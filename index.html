@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -99,6 +100,7 @@
         }
     </style>
 </head>
+
 <body>
     <nav class="navbar">
         <div class="logo-container">
@@ -120,9 +122,9 @@
 
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <div class="swiper-slide"><img src="house1.jpg" alt="House 1"></div>
-            <div class="swiper-slide"><img src="house2.jpg" alt="House 2"></div>
-            <div class="swiper-slide"><img src="house3.jpg" alt="House 3"></div>
+            <div class="swiper-slide"><img src="src/images/Mission.png" alt="House 1"></div>
+            <div class="swiper-slide"><img src="src/images/house2.jpg" alt="House 2"></div>
+            <div class="swiper-slide"><img src="src/images/house3.jpg" alt="House 3"></div>
         </div>
         <div class="swiper-pagination"></div>
         <div class="swiper-button-prev"></div>
@@ -130,10 +132,10 @@
     </div>
 
     <script>
-        document.getElementById('menu-toggle').addEventListener('click', function() {
+        document.getElementById('menu-toggle').addEventListener('click', function () {
             document.querySelector('.nav-links').classList.toggle('active');
         });
-        
+
         var swiper = new Swiper('.swiper-container', {
             navigation: { nextEl: '.swiper-button-next', prevEl: '.swiper-button-prev' },
             pagination: { el: '.swiper-pagination', clickable: true },
@@ -141,4 +143,5 @@
         });
     </script>
 </body>
+
 </html>
