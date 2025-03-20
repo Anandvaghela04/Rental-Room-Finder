@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Property Listings</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+      .navbar-brand h1 {
+            font-size: 20px;
+        }
+        .navbar-brand span {
+            font-size: 15px;
+        }
+        .navbar-nav .nav-link {
+            transition: color 0.3s ease-in-out;
+        }
+        .navbar {
+            background-color: #E0E5E5 !important;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #7c61f4 !important;
+        }
+    /* Reset Styles */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, sans-serif;
+    }
+
+    /* Main Background */
+    .main {
+        background-color: #d3dfdf;
+    }
+
+    /* Navigation Bar */
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background: #E0E5E5;
+        padding: 15px 30px;
+        color: rgb(0, 0, 0);
+    }
+
+    /* Logo Styling */
+    .logo h2 {
+        font-size: 24px;
+        font-weight: bold;
+        color: red; /* "ROOMS" in red */
+        margin: 0;
+        line-height: 1;
+    }
+
+    .logo span {
+        font-size: 16px;
+        font-weight: normal;
+        color: black; /* "For rent" in black */
+    }
+
+    /* Navigation Links */
+    .nav-links {
+        list-style: none;
+        display: flex;
+        gap: 100px; /* Increased gap */
+    }
+
+    .nav-links li {
+        display: inline-block;
+    }
+
+    .nav-links a {
+        text-decoration: none;
+        color: black;
+        font-size: 18px;
+        font-weight: 500;
+        transition: color 0.3s ease-in-out;
+    }
+
+    .nav-links a:hover {
+        color: #7c61f4; /* Hover color updated */
+    }
+
+    /* Profile Icon */
+    .profile img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+        cursor: pointer;
+        background-color: white;
+        padding: 5px;
+        border: 1px solid #ccc;
+    }
+
+        body {
+            background-color: #f8f9fa;
+        }
+        .property-card {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .property-card:hover {
+            transform: scale(1.05);
+        }
+        .property-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .property-card h3 {
+            padding: 10px;
+            margin: 0;
+            font-size: 1.2rem;
+            color: #007bff;
+        }
+        .property-card p {
+            padding: 10px;
+            margin: 0;
+        }
+        .price {
+            font-weight: bold;
+            color: #28a745;
+        }
+        .bhk {
+            font-weight: bold;
+            color: #6c757d;
+        }
+        .btn-view {
+            background-color: #007bff;
+            color: white;
+            display: block;
+            width: 100%;
+            text-align: center;
+            padding: 8px;
+            border-radius: 5px;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        .footer {
+            background: #0a2a43;
+            color: white;
+            padding: 40px 0;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .footer .social-icons a {
+            margin: 0 10px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <h1 class="mb-0 text-danger fw-bold">ROOMS <br> <span class="fs-6 text-dark">For rent</span></h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="AboutUs.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Property.html">Property</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Virtual_Tour.html">Virtual Tour</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Our_Gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Contact_page.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="d-none d-lg-block ms-4">
+                <i class="fa-solid fa-user fs-3 text-dark"></i>
+            </div>
+        </div>
+    </nav>
+    <div class="container text-center my-4">
+        <h1>Property Types</h1><br>
+
+        <div class="property-section mb-4" data-type="Apartment">
+            <h2>Apartment</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="property-card p-3">
+                        <img src="image/a_1.jpeg" alt="Luxury Apartment">
+                        <h3>Luxury Apartment</h3>
+                        <p>Modern design with city view.</p>
+                        <p class="bhk">3 BHK</p>
+                        <p class="price">$250,000</p>
+                        <a href="#" class="btn-view" onclick="redirectToViewMore('Luxury Apartment', 'image/a_1.jpeg', '3 BHK', '$250,000', 'Modern design with city view')">View More</a>
+                     </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="property-section mb-4" data-type="Villa">
+            <h2>Villa</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="property-card p-3">
+                        <img src="image/a_2.jpeg" alt="Beachside Villa">
+                        <h3>Beachside Villa</h3>
+                        <p>Private and luxurious.</p>
+                        <p class="bhk">5 BHK</p>
+                        <p class="price">$1,200,000</p>
+                        <a href="#" class="btn-view" onclick="redirectToViewMore('Luxury Apartment', 'image/a_1.jpeg', '3 BHK', '$250,000', 'Modern design with city view')">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="property-section mb-4" data-type="House">
+            <h2>House</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="property-card p-3">
+                        <img src="image/a_1.jpeg" alt="Suburban House">
+                        <h3>Suburban House</h3>
+                        <p>Perfect for families.</p>
+                        <p class="bhk">4 BHK</p>
+                        <p class="price">$500,000</p>
+                        <a href="#" class="btn-view">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="property-section mb-4"  data-type="Office">
+            <h2>Office</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="property-card p-3">
+                        <img src="image/a_2.jpeg" alt="Suburban House">
+                        <h3>Suburban House</h3>
+                        <p>Perfect for families.</p>
+                        <p class="bhk">4 BHK</p>
+                        <p class="price">$500,000</p>
+                        <a href="#" class="btn-view">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="property-section mb-4" data-type="Building">
+            <h2>Building</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="property-card p-3">
+                        <img src="image/a_1.jpeg" alt="Suburban House">
+                        <h3>Suburban House</h3>
+                        <p>Perfect for families.</p>
+                        <p class="bhk">4 BHK</p>
+                        <p class="price">$500,000</p>
+                        <a href="#" class="btn-view">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="property-section mb-4 " data-type="Townhouse">
+            <h2>Townhouse</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="property-card p-3">
+                        <img src="image/a_2.jpeg" alt="Suburban House">
+                        <h3>Suburban House</h3>
+                        <p>Perfect for families.</p>
+                        <p class="bhk">4 BHK</p>
+                        <p class="price">$500,000</p>
+                        <a href="#" class="btn-view">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="property-section mb-4" data-type="Shop">
+            <h2>Shop</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="property-card p-3">
+                        <img src="image/a_1.jpeg" alt="Suburban House">
+                        <h3>Suburban House</h3>
+                        <p>Perfect for families.</p>
+                        <p class="bhk">4 BHK</p>
+                        <p class="price">$500,000</p>
+                        <a href="#" class="btn-view">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="property-section mb-4" data-type="Garage">
+            <h2>Garage</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="property-card p-3">
+                        <img src="image/a_1.jpeg" alt="Suburban House">
+                        <h3>Suburban House</h3>
+                        <p>Perfect for families.</p>
+                        <p class="bhk">4 BHK</p>
+                        <p class="price">$500,000</p>
+                        <a href="#" class="btn-view">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>Get In Touch</h5>
+                    <p>Ahmedabad, Gujarat</p>
+                    <p>+00 00000 00000</p>
+                    <p>info@example.com</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <p><a href="#">About Us</a></p>
+                    <p><a href="#">Contact Us</a></p>
+                    <p><a href="#">Privacy Policy</a></p>
+                    <p><a href="#">Terms & Conditions</a></p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Photo Gallery</h5>
+                    <div class="d-flex flex-wrap">
+                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
+                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
+                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
+                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5>Newsletter</h5>
+                    <p>Subscribe to our newsletter for updates.</p>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Your email">
+                        <button class="btn btn-primary">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <p>&copy; 2025 Rooms for Rent. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+<script>
+    // Function to get the URL parameter
+    function getParameterByName(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        return urlParams.get(name);
+    }
+
+    // Get the selected property type from URL
+    const selectedType = getParameterByName("type");
+
+    if (selectedType) {
+        // Hide all property sections
+        document.querySelectorAll(".property-section").forEach(section => {
+            section.style.display = "none";
+        });
+
+        // Find the section with the matching data-type
+        const selectedSection = document.querySelector(`.property-section[data-type="${selectedType}"]`);
+        
+        if (selectedSection) {
+            selectedSection.style.display = "block";
+        } else {
+            // If no section matches, display a message
+            document.body.insertAdjacentHTML("beforeend", `<p>No properties found for: ${selectedType}</p>`);
+        }
+    }
+    function redirectToViewMore(title, image, bhk, price, desc) {
+        const url = `view_more.html?title=${encodeURIComponent(title)}&image=${encodeURIComponent(image)}&bhk=${encodeURIComponent(bhk)}&price=${encodeURIComponent(price)}&desc=${encodeURIComponent(desc)}`;
+        window.location.href = url;
+    }
+</script>
+
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>About Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .navbar-brand h1 {
+            font-size: 20px;
+        }
+        .navbar-brand span {
+            font-size: 15px;
+        }
+        .navbar-nav .nav-link {
+            transition: color 0.3s ease-in-out;
+        }
+        .navbar {
+            background-color: #E0E5E5 !important;
+        }
+        .navbar-nav .nav-link:hover {
+            color: #7c61f4 !important;
+        }
+        .about-card {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .about-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .about-img {
+            flex: 1;
+            min-width: 300px;
+            max-width: 50%;
+        }
+        .about-content {
+            flex: 1;
+            padding: 20px;
+        }
+        @media (max-width: 768px) {
+            .about-card {
+                flex-direction: column;
+            }
+            .about-img, .about-content {
+                max-width: 100%;
+            }
+        }
+        .footer {
+            background: #0a2a43;
+            color: white;
+            padding: 40px 0;
+        }
+        .footer a {
+            color: white;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .footer .social-icons a {
+            margin: 0 10px;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <h1 class="mb-0 text-danger fw-bold">ROOMS <br> <span class="fs-6 text-dark">For rent</span></h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="AboutUs.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Property.html">Property</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Virtual_Tour.html">Virtual Tour</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Our_Gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Contact_page.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="d-none d-lg-block ms-4">
+                <i class="fa-solid fa-user fs-3 text-dark"></i>
+            </div>
+        </div>
+    </nav>
+
+    <!-- our vision -->
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">About Us</h2>
+        <div class="about-card">
+            <div class="about-img">
+                <img src="image/vision.jpg" alt="Our Vision">
+            </div>
+            <div class="about-content">
+                <h3>Our Vision</h3>
+                <p>
+                    Our mission is to provide a reliable and efficient platform for finding rental rooms with ease. 
+                    We are committed to ensuring transparency, affordability, and convenience for both tenants and landlords.
+                     By leveraging technology, we aim to streamline the rental process and enhance user experience.
+                      Our focus is on building a trusted community that simplifies room hunting. Ultimately, 
+                      we strive to make finding the perfect rental space quick, safe, and hassle-free.
+                </p>
+            </div>
+        </div>
+    </div>
+    <!-- our mission -->
+    <div class="container mt-5">
+        <div class="about-card">
+            <div class="about-img">
+                <img src="image/Mission.png" alt="Our Mission">
+            </div>
+            <div class="about-content">
+                <h3>Our Mission</h3>
+                <p>
+                    Our mission is to provide a reliable and efficient platform for finding rental rooms with ease.
+                     We are committed to ensuring transparency, affordability, and convenience for both tenants and landlords.
+                      By leveraging technology, we aim to streamline the rental process and enhance user experience.
+                       Our focus is on building a trusted community that simplifies room hunting. Ultimately, 
+                       we strive to make finding the perfect rental space quick, safe, and hassle-free.
+                </p>
+            </div>
+        </div>
+    </div><br>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>Get In Touch</h5>
+                    <p>Ahmedabad, Gujarat</p>
+                    <p>+00 00000 00000</p>
+                    <p>info@example.com</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <p><a href="#">About Us</a></p>
+                    <p><a href="#">Contact Us</a></p>
+                    <p><a href="#">Privacy Policy</a></p>
+                    <p><a href="#">Terms & Conditions</a></p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Photo Gallery</h5>
+                    <div class="d-flex flex-wrap">
+                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
+                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
+                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
+                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5>Newsletter</h5>
+                    <p>Subscribe to our newsletter for updates.</p>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Your email">
+                        <button class="btn btn-primary">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <p>&copy; 2025 Rooms for Rent. All rights reserved.</p>
+        </div>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

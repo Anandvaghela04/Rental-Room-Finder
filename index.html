@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rooms for Rent</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+<body class="bg-light">
+    <!-- ================== NAVIGATION BAR ================== -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <h1 class="mb-0 text-danger fw-bold">ROOMS <br> <span class="fs-6 text-dark">For rent</span></h1>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="AboutUs.html">About</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Property.html">Property</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Virtual_Tour.html">Virtual Tour</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Our_Gallery.html">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Contact_page.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="d-none d-lg-block ms-4">
+                <a href="Profile.html"><i class="fa-solid fa-user fs-3 text-dark"></i></a>
+            </div>
+        </div>
+    </nav>
+    <!-- ================== HERO CAROUSEL ================== -->
+    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="image/Slider1.jpg" class="d-block w-100" alt="Modern House 1">
+            </div>
+            <div class="carousel-item">
+                <img src="image/Slider2.jpg" class="d-block w-100" alt="Modern House 2">
+            </div>
+            <div class="carousel-item">
+                <img src="image/Slider3.jpg" class="d-block w-100" alt="Modern House 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+    <!-- ================== PROPERTY TYPES ================== -->
+    <div class="container property-types">
+        <h2>Property Types</h2><br>
+        <div class="row g-4">
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="property-card">
+                    <a href="Property.html?type=Apartment">
+                        <img src="image/aparmentlogo.jpeg" alt="Apartment">
+                    </a>
+                    <p>Apartment</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="property-card">
+                    <a href="Property.html?type=Villa">
+                        <img src="image/villaphoto.png" alt="Villa">
+                    </a>
+                    <p>Villa</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="property-card"> <a href="Property.html?type=House">
+                        <img src="image/Townhousephoto.png" alt="House">
+                    </a>
+                    <p>House</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="property-card"> 
+                    <a href="Property.html?type=Office">
+                        <img src="image/officephoto.jpeg" alt="Office">
+                    </a>
+                    <p>Office</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="property-card">
+                    <a href="Property.html?type=Building">
+                        <img src="image/Buildingphoto.jpeg" alt="Building">
+                    </a>
+                    <p>Building</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="property-card">
+                    <a href="Property.html?type=Townhouse">
+                        <img src="image/Townhousephoto.png" alt="Townhouse">
+                    </a>
+                    <p>Townhouse</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="property-card">
+                    <a href="Property.html?type=Shop">
+                        <img src="image/shopphoto.png" alt="Shop">
+                    </a>
+                    <p>Shop</p>
+                </div>
+            </div>
+            <div class="col-6 col-md-4 col-lg-3">
+                <div class="property-card">
+                    <a href="Property.html?type=Garage">
+                        <img src="image/garagephoto.png" alt="Garage">
+                    </a>
+                    <p>Garage</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- ================== PHOTO GALLERY ================== -->
+     <center>
+    <div class="wrapper photo-gallery">
+        <h2>Explore Our Gallery</h2><br>
+        <div class="grid">
+            <div class="card-container">
+                <div class="card-content">
+                    <div class="card-front">
+                        <img src="image/a_1.jpeg" alt="Luxury Apartment">
+                    </div>
+                    <div class="card-back">
+                        <h3>Luxury Apartment</h3>
+                        <p>Modern design with city view.</p>
+                        <p class="unit">3 BHK</p>
+                        <p class="cost">$250,000</p>
+                        <a href="#" class="button">View More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-container">
+                <div class="card-content">
+                    <div class="card-front">
+                        <img src="image/Luxury Villa2.jpeg" alt="Luxury Villa">
+                    </div>
+                    <div class="card-back">
+                        <h3>Luxury Villa</h3>
+                        <p>Modern design with city view.</p>
+                        <p class="unit">3 BHK</p>
+                        <p class="cost">$250,000</p>
+                        <a href="#" class="button">View More</a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-container">
+                <div class="card-content">
+                    <div class="card-front">
+                        <img src="image/Luxury Office3.jpeg" alt="Luxury Office">
+                    </div>
+                    <div class="card-back">
+                        <h3>Luxury Office</h3>
+                        <p>Modern design with city view.</p>
+                        <p class="unit">3 BHK</p>
+                        <p class="cost">$250,000</p>
+                        <a href="#" class="button">View More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</center>
+    <!-- ================== up coming ================== -->
+    <div class="container gallery">
+        <h2>Up Comings!</h2><br>
+        <div class="row g-4">
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="image/a_1.jpeg" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins
+                                        ago</small>
+                                </p>
+                                <a href="#" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="image/a_1.jpeg" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins
+                                        ago</small>
+                                </p>
+                                <a href="#" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="image/a_1.jpeg" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins
+                                        ago</small>
+                                </p>
+                                <a href="#" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="image/a_1.jpeg" class="img-fluid rounded-start" alt="...">
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Card title</h5>
+                                <p class="card-text">This is a wider card with supporting text below as a natural
+                                    lead-in to additional content. This content is a little bit longer.</p>
+                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins
+                                        ago</small>
+                                </p>
+                                <a href="#" class="btn btn-primary">View More</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ================== FOOTER ================== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5>Get In Touch</h5>
+                    <p>Ahmedabad, Gujarat</p>
+                    <p>+00 00000 00000</p>
+                    <p>info@example.com</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5>Quick Links</h5>
+                    <p><a href="#">About Us</a></p>
+                    <p><a href="#">Contact Us</a></p>
+                    <p><a href="#">Privacy Policy</a></p>
+                    <p><a href="#">Terms & Conditions</a></p>
+                </div>
+                <div class="col-md-3">
+                    <h5>Photo Gallery</h5>
+                    <div class="d-flex flex-wrap">
+                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
+                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
+                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
+                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <h5>Newsletter</h5>
+                    <p>Subscribe to our newsletter for updates.</p>
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Your email">
+                        <button class="btn btn-primary">Sign Up</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4">
+            <p>&copy; 2025 Rooms for Rent. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

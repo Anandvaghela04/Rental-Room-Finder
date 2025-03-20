@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Buyer Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .property-card, .seller-info {
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="text-center">Buyer Dashboard</h2>
+        
+        <div class="row">
+            <!-- Property Section -->
+            <div class="col-md-6">
+                <div class="property-card">
+                    <h4>Property Details</h4>
+                    <img src="image/Slider2.jpg" alt="Property Photo" class="img-fluid rounded mb-3">
+                    <p>Location: New York, USA</p>
+                    <p>Price: $500,000</p>
+                    <p>Size: 2000 sqft</p>
+                    <button class="btn btn-primary w-100">Buy Request</button>
+                </div>
+            </div>
+            
+            <!-- Seller Info Section (Visible if approved) -->
+            <div class="col-md-6">
+                <div class="seller-info">
+                    <h4>Seller Information</h4>
+                    <p><strong>Name:</strong> John Doe</p>
+                    <p><strong>Contact:</strong> johndoe@email.com</p>
+                    <p><strong>Phone:</strong> +1 234 567 890</p>
+                    <button class="btn btn-success w-100">Proceed</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
