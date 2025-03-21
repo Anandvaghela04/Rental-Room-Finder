@@ -4,83 +4,125 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login / Register</title>
+    <title>User Dashboard</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-
+            background-color: #f4f4f4;
+            display: flex;
         }
 
-        .container {
-            width: 90%;
-            max-width: 400px;
+        .sidebar {
+            width: 250px;
+            background: #2c3e50;
+            color: white;
+            height: 100vh;
+            padding-top: 20px;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid #34495e;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background: #34495e;
+        }
+
+        .content {
+            margin-left: 260px;
+            padding: 20px;
+            width: calc(100% - 260px);
+        }
+
+        .dashboard-card {
             background: white;
             padding: 20px;
-            margin: 50px auto;
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
         }
 
-        .profile-icon img {
+        .profile-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .profile-card img {
             width: 80px;
             height: 80px;
             border-radius: 50%;
+            margin-bottom: 10px;
         }
 
-        h2 {
-            color: #2c3e50;
-        }
-
-        p {
-            color: #7f8c8d;
-            font-size: 14px;
-        }
-
-        .settings {
-            margin-top: 20px;
-        }
-
-        .setting-item {
-            background: #ecf0f1;
-            padding: 12px;
-            margin: 8px 0;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .setting-item:hover {
-            background: #bdc3c7;
-        }
-
-        a{
-            font-size: 20px;
-            font-size: 15px;
-            transition: color 0.3s ease-in-out;
-            color: #030304 !important;
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="profile-icon">
-            <img src="image/profile.png" alt="User Icon">
-        </div>
-        <h2>Login / Register</h2>
-        <p>Login and access millions of advertiser details on a single click</p>
 
-        <div class="settings">
-            <div class="setting-item">⚙ Communication Settings</div>
-            <div class="setting-item"><a href="SellerUi.html">Seller</a> </div>
-            <div class="setting-item"><a href="login.html">↩ Login</a></div>
-            <div class="setting-item"><a href="index.html">🏚️ Back To Home </a></div>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <a href="#" onclick="showDashboard('seller')">📦 Seller Dashboard</a>
+        <a href="#" onclick="showDashboard('buyer')">🛒 Buyer Dashboard</a>
+        <a href="index.html">🏠 Home</a>
+        <a href="login.html">🔑 Login</a>
+    </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Seller Dashboard -->
+        <div id="seller-dashboard" class="dashboard-card hidden">
+            <h2>Seller Dashboard</h2>
+            <p>Manage your products, track orders, and view analytics.</p>
+        </div>
+
+        <!-- Buyer Dashboard -->
+        <div id="buyer-dashboard" class="dashboard-card hidden">
+            <h2>Buyer Dashboard</h2>
+            <p>Browse products, track purchases, and manage wishlist.</p>
+        </div>
+
+        <!-- Profile Card -->
+        <div class="profile-card">
+            <img src="image/profile.png" alt="User Icon">
+            <h2>User Profile</h2>
+            <p>Name: John Doe</p>
+            <p>Email: johndoe@example.com</p>
         </div>
     </div>
+
+    <script>
+        function showDashboard(userType) {
+            document.getElementById('seller-dashboard').classList.add('hidden');
+            document.getElementById('buyer-dashboard').classList.add('hidden');
+
+            if (userType === 'seller') {
+                document.getElementById('seller-dashboard').classList.remove('hidden');
+            } else {
+                document.getElementById('buyer-dashboard').classList.remove('hidden');
+            }
+        }
+    </script>
+
 </body>
 
 </html>
