@@ -39,13 +39,14 @@ async function handleSignUp(e) {
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
-  console.log("ffffffffffff", name, email, password)
+
 
   if (!name || !email || !password) {
     alert("All fields are required!");
     return;
   }
 
+  document.querySelector("#real-signup-btn img.loading-image").style.display = "inline-block";
   try {
     const response = await fetch(`${BACKEND_URL}/api/v1/auth/register`, {
       method: "POST",
@@ -55,15 +56,15 @@ async function handleSignUp(e) {
       body: JSON.stringify({ name, email, password })
     });
 
-    const data = await response.json();
-    if (data.user) {
-      alert("Registration Successful!");
+    if (response.ok) {
+      document.querySelector("#real-signup-btn img.loading-image").style.display = "none";
       window.location.href = "login.html";
     }
 
   } catch (error) {
     console.error("Error:", error);
   }
+  document.querySelector("#real-signup-btn img.loading-image").style.display = "none";
 }
 
 
@@ -75,6 +76,7 @@ async function handleSignIn(e) {
   e.preventDefault();
   const email = document.getElementById("loginemail").value;
   const password = document.getElementById("loginpassword").value;
+  document.querySelector("#real-signin-btn img.loading-image").style.display = "inline-block";
 
   if (!email || !password) {
     alert("All fields are required!");
@@ -92,6 +94,7 @@ async function handleSignIn(e) {
 
     const data = await response.json();
     if (data.token) {
+      document.querySelector("#real-signin-btn img.loading-image").style.display = "none";
       localStorage.setItem("token", data.token);
       alert("Login Successful!");
       window.location.href = "index.html";
@@ -100,5 +103,6 @@ async function handleSignIn(e) {
   } catch (error) {
     console.error("Error:", error);
   }
+  document.querySelector("#real-signin-btn img.loading-image").style.display = "none";
 }
 

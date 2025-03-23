@@ -23,6 +23,8 @@ function checkUserLoggedIn() {
                 if (!data.success) {
                     localStorage.removeItem("token");
                     window.location.href = "login.html";
+                } else {
+                    window.location.href = "index.html";
                 }
             })
             // catch any errors

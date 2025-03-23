@@ -5,10 +5,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Document</title>
-  <link rel="stylesheet" href="login.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="css/comman.css" />
+  <link rel="stylesheet" href="css/login.css" />
   <script src="js/comman.js"></script>
 </head>
 
@@ -27,7 +28,8 @@
         <input type="text" placeholder="Name" id="name" />
         <input type="email" placeholder="Email" id="email" />
         <input type="password" placeholder="Password" id="password" />
-        <button>Sign Up</button>
+        <button class="loading-perent" id="real-signup-btn"><span>Sign Up</span>
+          <img src="image/loading.png" class="loading-image" alt="loading...."></button></button>
       </form>
     </div>
     <div class="form-container sign-in-container">
@@ -42,7 +44,7 @@
         <input type="email" placeholder="Email" id="loginemail" />
         <input type="password" placeholder="Password" id="loginpassword" />
         <a href="forgot-password.html">Forgot your password?</a>
-        <button><span>Sign In</span>
+        <button class="loading-perent" id="real-signin-btn"><span>Sign In</span>
           <img src="image/loading.png" class="loading-image" alt="loading...."></button>
       </form>
     </div>
@@ -58,8 +60,7 @@
         <div class="overlay-panel overlay-right">
           <h1>Hello, Friend!</h1>
           <p>Enter your personal details and start journey with us</p>
-          <button class="ghost" id="signUp"><span>Sign Up</span>
-            <img src="image/loading.png" class="loading-image" alt="loading...."></button>
+          <button class="ghost " id="signUp">Sign Up
         </div>
       </div>
     </div>
