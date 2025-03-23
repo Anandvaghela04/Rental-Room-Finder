@@ -31,39 +31,39 @@ function clearErrors() {
 
 
 document.addEventListener("DOMContentLoaded", () => {
-    document.getElementById("signupForm").addEventListener("submit", handleSignUp);
+  document.getElementById("signupForm").addEventListener("submit", handleSignUp);
 });
 
 async function handleSignUp(e) {
-    e.preventDefault();
-    const name = document.getElementById("name").value;
-    const email = document.getElementById("email").value;
-    const password = document.getElementById("password").value;
-    console.log("ffffffffffff",name,email,password)
+  e.preventDefault();
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const password = document.getElementById("password").value;
+  console.log("ffffffffffff", name, email, password)
 
-    if (!name || !email || !password) {
-        alert("All fields are required!");
-        return;
+  if (!name || !email || !password) {
+    alert("All fields are required!");
+    return;
+  }
+
+  try {
+    const response = await fetch(`${BACKEND_URL}/api/v1/auth/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ name, email, password })
+    });
+
+    const data = await response.json();
+    if (data.user) {
+      alert("Registration Successful!");
+      window.location.href = "login.html";
     }
 
-    try {
-        const response = await fetch("http://localhost:5500/api/v1/auth/register", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({name, email, password})
-        });
-
-      const data = await response.json();
-      if (data.user) {
-            alert("Registration Successful!");
-            window.location.href = "index.html";
-        }
-
-    } catch (error) {
-        console.error("Error:", error);
-    }
+  } catch (error) {
+    console.error("Error:", error);
+  }
 }
 
 
@@ -82,7 +82,7 @@ async function handleSignIn(e) {
   }
 
   try {
-    const response = await fetch("http://localhost:5500/api/v1/auth/login", {
+    const response = await fetch(`${BACKEND_URL}/api/v1/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -92,6 +92,7 @@ async function handleSignIn(e) {
 
     const data = await response.json();
     if (data.token) {
+      localStorage.setItem("token", data.token);
       alert("Login Successful!");
       window.location.href = "index.html";
     }
