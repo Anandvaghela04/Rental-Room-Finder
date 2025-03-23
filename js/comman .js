@@ -1,3 +1,3 @@
-export const BACKEND_URL="http://192.168.232.202:5000";
+// common.js
+const BACKEND_URL = "https://rental-room-finder-server.onrender.com";
 
-//  default BACKEND_URL;

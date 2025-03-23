@@ -217,22 +217,7 @@ async function handleSignIn(e) {
 
 
 
- async function sendOtp(){
-  let email = document.getElementById("email").value;
-  console.log("email",email)
-  try{
-    const response = await fetch("http://localhost:5500/api/v1/auth/forgot-password", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({ email })
-    });
-  }
-  catch (error){
-    console.log(error)
-  }
-}
+
 
 
         // async function sendOtp() {
