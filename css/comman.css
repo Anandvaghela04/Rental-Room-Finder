@@ -1,7 +1,8 @@
 .loading-image {
-    width: 2rem;
+    width: 1.7rem;
     height: auto;
     animation: spin 1s linear infinite;
+    display: none;
 }
 
 @keyframes spin {
