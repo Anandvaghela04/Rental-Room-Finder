@@ -1,7 +1,8 @@
 // this function use for send otp in email
 async function sendOtp() {
     let email = document.getElementById("email").value;
-    let emailErrorBox = document.getElementById("email-message")
+    let emailErrorBox = document.getElementById("email-message");
+    document.querySelector("#otp img.loading-image").style.display = "inline-block";
 
     try {
         const response = await fetch(`${BACKEND_URL}/api/v1/auth/forgot-password`, {
@@ -13,17 +14,19 @@ async function sendOtp() {
         });
 
         if (response.ok) {
+            document.querySelector("#otp img.loading-image").style.display = "none";
             document.getElementById("email-field").style.display = "none"; // Hide email field
             document.getElementById("new-pass-field").style.display = "block"; // Show new password field
         } else {
             console.log(response);
             emailErrorBox.innerText = "Unable to send CODE";
-             console.log("Error: Unable to send CODE");
+            console.log("Error: Unable to send CODE");
         }
     } catch (error) {
-         emailErrorBox.innerText = error.message;
+        emailErrorBox.innerText = error.message;
         console.log("Fetch error:", error);
     }
+    document.querySelector("#otp img.loading-image").style.display = "none";
 }
 
 // This function is calles for reset password
@@ -39,6 +42,7 @@ async function resetPassword() {
         return;
     }
 
+    document.querySelector("#reset-pass img.loading-image").style.display = "inline-block";
     try {
         const response = await fetch(`${BACKEND_URL}/api/v1/auth/reset-password`, {
             method: "POST",
@@ -49,6 +53,7 @@ async function resetPassword() {
         });
 
         if (response.ok) {
+            document.querySelector("#reset-pass img.loading-image").style.display = "none";
             alert("Password reset successfully!");
             window.location.href = "login.html";
         } else {
@@ -60,6 +65,7 @@ async function resetPassword() {
         passwordErrorBox.innerText = error.message;
         console.log("Fetch error:", error);
     }
+    document.querySelector("#reset-pass img.loading-image").style.display = "none";
 }
 
 
