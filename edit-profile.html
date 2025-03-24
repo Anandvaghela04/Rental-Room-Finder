@@ -62,10 +62,6 @@
         <!-- Profile Picture -->
         <img src="image/profile.png" alt="Profile Picture" id="profile-pic" class="profile-pic">
         <br>
-        <label class="upload-btn">
-            📤 Upload New Picture
-            <input type="file" id="file-input" class="file-input" accept="image/*">
-        </label>
 
         <form id="edit-profile-form">
             <div class="mb-3">
@@ -75,32 +71,11 @@
             <div class="mb-3">
                 <label class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" value="johndoe@example.com">
-            </div>
+            </div><br>
             <button type="submit" class="btn btn-primary">Save Changes</button>
             <a href="Profile.html" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
-
-    <script>
-        // Handle profile picture preview
-        document.getElementById("file-input").addEventListener("change", function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    document.getElementById("profile-pic").src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        // Handle form submission
-        document.getElementById("edit-profile-form").addEventListener("submit", function(event) {
-            event.preventDefault();
-            alert("Profile updated successfully!");
-            window.location.href = "index.html"; // Redirect to dashboard
-        });
-    </script>
 
 </body>
 
