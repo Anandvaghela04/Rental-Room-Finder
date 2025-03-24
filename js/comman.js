@@ -20,11 +20,9 @@ function checkUserLoggedIn() {
             .then(response => response.json())
             // check response was false then redirect to login page
             .then(data => {
-                if (!data.success) {
+                if (!data.valid) {
                     localStorage.removeItem("token");
                     window.location.href = "login.html";
-                } else {
-                    window.location.href = "index.html";
                 }
             })
             // catch any errors
