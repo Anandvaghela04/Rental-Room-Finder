@@ -1,0 +1,28 @@
+.loading-perent {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.loading-image {
+    width: 1.7rem;
+    height: auto;
+    animation: spin 1s linear infinite;
+    display: none;
+    position: absolute;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    50% {
+        transform: rotate(200deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
