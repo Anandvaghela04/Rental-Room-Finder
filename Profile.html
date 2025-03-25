@@ -3,323 +3,256 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Rooms for Rent</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            display: flex;
+        }
 
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="css/index.css">
-    <script src="js/comman.js"></script>
-    <!-- <script>
-        // check user login or not
-        checkUserLoggedIn(); 
-    </script> -->
+        .sidebar {
+            width: 250px;
+            background: #2c3e50;
+            color: white;
+            height: 100vh;
+            padding-top: 20px;
+            position: fixed;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .sidebar a {
+            display: block;
+            padding: 15px;
+            color: white;
+            text-decoration: none;
+            border-bottom: 1px solid #34495e;
+            transition: 0.3s;
+        }
+        
+
+        .sidebar a:hover {
+            background: #34495e;
+        }
+
+        .content {
+            margin-left: 260px;
+            padding: 20px;
+            width: calc(100% - 260px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .dashboard-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+            width: 80%;
+            max-width: 600px;
+        }
+
+        .profile-card {
+            background: linear-gradient(135deg, #3498db, #9b59b6);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: white;
+            width: 80%;
+            max-width: 350px;
+        }
+
+        .profile-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid white;
+            margin-bottom: 10px;
+        }
+
+        .edit-profile-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: white;
+            color: #3498db;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+            text-decoration: none; 
+            
+        }
+
+        .edit-profile-btn:hover {
+            background-color: #ecf0f1;
+            
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            .content {
+                margin-left: 210px;
+                width: calc(100% - 210px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                text-align: center;
+            }
+            .content {
+                margin-left: 0;
+                width: 100%;
+                padding: 10px;
+            }
+            .profile-card, .dashboard-card {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 
-<body class="bg-light">
-    <!-- ================== NAVIGATION BAR ================== -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm fixed-top">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="image/logo.jpg" alt="Rooms for Rent" height="60">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="AboutUs.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Property.html">Property</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Virtual_Tour.html">Virtual Tour</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Our_Gallery.html">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Blog.html">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Contact_page.html">Contact</a></li>
-                </ul>
-                <div class="d-none d-lg-block ms-4">
-                    <a href="Profile.html"><i class="fa-solid fa-user fs-3 text-dark"></i></a>
-                </div>
-            </div>
+<body>
 
-        </div>
-    </nav>
-    <!-- ================== HERO CAROUSEL ================== -->
-    <div id="heroCarousel" class="carousel slide" data-bs-ride="carousel">
-        <div class="carousel-inner">
-            <div class="carousel-item active">
-                <img src="image/Slider1.jpg" class="d-block w-100" alt="Modern House 1">
-            </div>
-            <div class="carousel-item">
-                <img src="image/Slider2.jpg" class="d-block w-100" alt="Modern House 2">
-            </div>
-            <div class="carousel-item">
-                <img src="image/Slider3.jpg" class="d-block w-100" alt="Modern House 3">
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#heroCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#heroCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-        </button>
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <a href="SellerUi.html" onclick="showDashboard('seller')">📦 Seller Dashboard</a>
+        <a href="BuyerUi.html" onclick="showDashboard('buyer')">🛒 Buyer Dashboard</a>
+        <a href="index.html">🏠 Home</a>
+        <a href="login.html">🔑 Login</a>
+        <a href="change-password.html" onclick="showChangePassword()">🔒 Change Password</a>
     </div>
-    <!-- ================== PROPERTY TYPES ================== -->
-    <div class="container property-types">
-        <h2>Property Types</h2><br>
-        <div class="row g-4">
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="property-card">
-                    <a href="Property.html?type=Apartment">
-                        <img src="image/aparmentlogo.jpeg" alt="Apartment">
-                    </a>
-                    <p>Apartment</p>
-                </div>
+
+    <!-- Main Content -->
+    <div class="content">
+        <!-- Seller Dashboard -->
+        <div class="content">
+            <div id="seller-dashboard" class="container hidden">
+                <h2>Seller Dashboard</h2>
+                <div class="row" id="seller-properties"></div>
             </div>
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="property-card">
-                    <a href="Property.html?type=Villa">
-                        <img src="image/villaphoto.png" alt="Villa">
-                    </a>
-                    <p>Villa</p>
-                </div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="property-card"> <a href="Property.html?type=House">
-                        <img src="image/Townhousephoto.png" alt="House">
-                    </a>
-                    <p>House</p>
-                </div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="property-card">
-                    <a href="Property.html?type=Office">
-                        <img src="image/officephoto.jpeg" alt="Office">
-                    </a>
-                    <p>Office</p>
-                </div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="property-card">
-                    <a href="Property.html?type=Building">
-                        <img src="image/Buildingphoto.jpeg" alt="Building">
-                    </a>
-                    <p>Building</p>
-                </div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="property-card">
-                    <a href="Property.html?type=Townhouse">
-                        <img src="image/Townhousephoto.png" alt="Townhouse">
-                    </a>
-                    <p>Townhouse</p>
-                </div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="property-card">
-                    <a href="Property.html?type=Shop">
-                        <img src="image/shopphoto.png" alt="Shop">
-                    </a>
-                    <p>Shop</p>
-                </div>
-            </div>
-            <div class="col-6 col-md-4 col-lg-3">
-                <div class="property-card">
-                    <a href="Property.html?type=Garage">
-                        <img src="image/garagephoto.png" alt="Garage">
-                    </a>
-                    <p>Garage</p>
-                </div>
+    
+            <div id="buyer-dashboard" class="container hidden">
+                <h2>Buyer Dashboard</h2>
+                <div class="row" id="buyer-properties"></div>
             </div>
         </div>
 
-    </div>
-    <!-- ================== PHOTO GALLERY ================== -->
-    <center>
-        <div class="wrapper photo-gallery">
-            <h2>Explore Our Gallery</h2><br>
-            <div class="grid">
-                <div class="card-container">
-                    <div class="card-content">
-                        <div class="card-front">
-                            <img src="image/a_1.jpeg" alt="Luxury Apartment">
-                        </div>
-                        <div class="card-back">
-                            <h3>Luxury Apartment</h3>
-                            <p>Modern design with city view.</p>
-                            <p class="unit">3 BHK</p>
-                            <a href="Our_Gallery.html" class="button">View More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-container">
-                    <div class="card-content">
-                        <div class="card-front">
-                            <img src="image/Luxury Villa2.jpeg" alt="Luxury Villa">
-                        </div>
-                        <div class="card-back">
-                            <h3>Luxury Villa</h3>
-                            <p>Modern design with city view.</p>
-                            <p class="unit">3 BHK</p>
-                            <a href="Our_Gallery.html" class="button">View More</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-container">
-                    <div class="card-content">
-                        <div class="card-front">
-                            <img src="image/Luxury Office3.jpeg" alt="Luxury Office">
-                        </div>
-                        <div class="card-back">
-                            <h3>Luxury Office</h3>
-                            <p>Modern design with city view.</p>
-                            <p class="unit">3 BHK</p>
-                            <a href="Our_Gallery.html" class="button">View More</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- Profile Card -->
+        <div class="profile-card">
+            <img src="image/profile.png" alt="User Icon">
+            <h2>John Doe</h2>
+            <p>Email: johndoe@example.com</p>
+            <a href="edit-profile.html" class="edit-profile-btn">✏️ Edit Profile</a>
         </div>
-    </center>
-    <!-- ================== up coming ================== -->
-    <div class="container gallery">
-        <h2>Up Comings!</h2><br>
-        <div class="row g-4">
-            <div class="col-md-6">
-                <div class="card mb-3">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="image/latestphoto1.jpg" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins
-                                        ago</small>
-                                </p>
-                                <a href="UpcomingVM.html" class="btn btn-primary">View More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card mb-3">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="image/latestphoto2.jpg" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins
-                                        ago</small>
-                                </p>
-                                <a href="UpcomingVM.html" class="btn btn-primary">View More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card mb-3">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="image/latestphoto3.jpg" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins
-                                        ago</small>
-                                </p>
-                                <a href="UpcomingVM.html" class="btn btn-primary">View More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="card mb-3">
-                    <div class="row g-0">
-                        <div class="col-md-4">
-                            <img src="image/latestphoto4.jpg" class="img-fluid rounded-start" alt="...">
-                        </div>
-                        <div class="col-md-8">
-                            <div class="card-body">
-                                <h5 class="card-title">Card title</h5>
-                                <p class="card-text">This is a wider card with supporting text below as a natural
-                                    lead-in to additional content. This content is a little bit longer.</p>
-                                <p class="card-text"><small class="text-body-secondary">Last updated 3 mins
-                                        ago</small>
-                                </p>
-                                <a href="UpcomingVM.html" class="btn btn-primary">View More</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- ================== FOOTER ================== -->
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <h5>Get In Touch</h5>
-                    <p>Ahmedabad, Gujarat</p>
-                    <p>+00 00000 00000</p>
-                    <p>info@example.com</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <h5>Quick Links</h5>
-                    <p><a href="AboutUs.html">About Us</a></p>
-                    <p><a href="Contact_page.html">Contact Us</a></p>
-                    <p><a href="#">Privacy Policy</a></p>
-                    <p><a href="#">Terms & Conditions</a></p>
-                </div>
-                <div class="col-md-3">
-                    <h5>Photo Gallery</h5>
-                    <div class="d-flex flex-wrap">
-                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
-                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
-                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
-                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <h5>Newsletter</h5>
-                    <p>Subscribe to our newsletter for updates.</p>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Your email">
-                        <button class="btn btn-primary">Sign Up</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="text-center mt-4">
-            <p>&copy; 2025 Rooms for Rent. All rights reserved.</p>
-        </div>
-    </footer>
 
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Change Password Form -->
+        <div id="change-password" class="dashboard-card hidden">
+            <h2>Change Password</h2>
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">Old Password</label>
+                    <input type="password" class="form-control" placeholder="Enter old password">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">New Password</label>
+                    <input type="password" class="form-control" placeholder="Enter new password">
+                </div>
+                <button type="submit" class="btn btn-primary">Change Password</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showDashboard(userType) {
+            document.getElementById('seller-dashboard').classList.add('hidden');
+            document.getElementById('buyer-dashboard').classList.add('hidden');
+            document.getElementById('change-password').classList.add('hidden');
+            
+            if (userType === 'seller') {
+                document.getElementById('seller-dashboard').classList.remove('hidden');
+            } else {
+                document.getElementById('buyer-dashboard').classList.remove('hidden');
+            }
+        }
+
+        function showChangePassword() {
+            document.getElementById('change-password').classList.remove('hidden');
+        }
+
+        function editProfile() {
+            window.location.href = 'edit-profile.html';
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- seller & buyer dashboard script-->
+    <script>
+        function showDashboard(userType) {
+            document.getElementById('seller-dashboard').classList.add('hidden');
+            document.getElementById('buyer-dashboard').classList.add('hidden');
+
+            if (userType === 'seller') {
+                document.getElementById('seller-dashboard').classList.remove('hidden');
+                loadProperties('seller');
+            } else {
+                document.getElementById('buyer-dashboard').classList.remove('hidden');
+                loadProperties('buyer');
+            }
+        }
+
+        function loadProperties(userType) {
+            const properties = [
+                { title: "Luxury Apartment", img: "image/aparmentlogo.jpeg", link: "Property.html?type=Apartment" },
+                { title: "Cozy House", img: "image/house.jpeg", link: "Property.html?type=House" },
+                { title: "Villa", img: "image/villa.jpeg", link: "Property.html?type=Villa" }
+            ];
+            
+            const container = document.getElementById(userType + '-properties');
+            container.innerHTML = '';
+            
+            properties.forEach(property => {
+                const card = document.createElement('div');
+                card.className = 'col-6 col-md-4 col-lg-3';
+                card.innerHTML = `
+                    <div class="property-card text-center p-3 border rounded shadow-sm">
+                        <a href="${property.link}">
+                            <img src="${property.img}" class="img-fluid rounded" alt="${property.title}">
+                        </a>
+                        <p class="mt-2">${property.title}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+    </script>
 </body>
 
 </html>
