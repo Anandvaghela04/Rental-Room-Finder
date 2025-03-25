@@ -8,6 +8,7 @@ function checkUserLoggedIn() {
     if (!token) {
         // if token is not found, redirect to login page
         window.location.href = "login.html";
+        return false;
     } else {
         // if token is found, check if user is logged in by making an API request
         fetch(`${BACKEND_URL}/api/v1/auth/verify`, {
@@ -20,15 +21,15 @@ function checkUserLoggedIn() {
             .then(response => response.json())
             // check response was false then redirect to login page
             .then(data => {
-                if (!data.success) {
+                if (!data.valid) {
                     localStorage.removeItem("token");
                     window.location.href = "login.html";
-                } else {
-                    window.location.href = "index.html";
+                    return false;
                 }
             })
             // catch any errors
             .catch(error => console.error("Error:", error));
     }
+    return true;
 }
 
