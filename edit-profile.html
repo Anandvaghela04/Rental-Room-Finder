@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Profile</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .edit-profile-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 3px solid #3498db;
+            object-fit: cover;
+        }
+
+        .file-input {
+            display: none;
+        }
+
+        .upload-btn {
+            margin-top: 10px;
+            cursor: pointer;
+            display: inline-block;
+            padding: 8px 12px;
+            background-color: #3498db;
+            color: white;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        .upload-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="edit-profile-container">
+        <h2>Edit Profile</h2>
+        <!-- Profile Picture -->
+        <img src="image/profile.png" alt="Profile Picture" id="profile-pic" class="profile-pic">
+        <br>
+
+        <form id="edit-profile-form">
+            <div class="mb-3">
+                <label class="form-label">Full Name</label>
+                <input type="text" class="form-control" id="name" value="John Doe">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" value="johndoe@example.com">
+            </div><br>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <a href="Profile.html" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+
+</body>
+
+</html>

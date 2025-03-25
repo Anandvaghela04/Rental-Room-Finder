@@ -16,14 +16,45 @@
             background: white;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            transition: transform 0.3s;
         }
 
-        .buyer-list {
-            background: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        .property-card:hover {
+            transform: scale(1.05);
+        }
+
+        .property-card img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        a{
+            color: white;
+            text-decoration: none; 
+        }
+
+        .property-card h3 {
+            padding: 10px;
+            margin: 0;
+            font-size: 1.2rem;
+            color: #007bff;
+        }
+
+        .property-card p {
+            padding: 10px;
+            margin: 0;
+        }
+
+        .price {
+            font-weight: bold;
+            color: #28a745;
+        }
+
+        .bhk {
+            font-weight: bold;
+            color: #6c757d;
         }
     </style>
 </head>
@@ -33,8 +64,25 @@
         <h2 class="text-center">Seller Dashboard</h2>
 
         <!-- Property Section -->
-        <div class="property-card p-3" id="propertie-section">
-           <b>loading....</b>
+        <div class="property-section mb-4">
+            <div class="row" id="property-list">
+                <div class="col-md-6 col-lg-4" id="property-1">
+                    <div class="property-card p-3">
+                        <img src="image/apartment1.jpg" alt="Luxury Apartment">
+                        <h3>Luxury Apartment</h3>
+                        <p>Modern design with city view.</p>
+                        <p class="bhk">3 BHK</p>
+                        <p class="price">$250,000</p>
+                        <button class="btn btn-danger mt-2" onclick="removeProperty('property-1')">Remove</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row mt-3">
+            <div class="col-12 text-center">
+                <button class="btn btn-primary" onclick="addProperty()"><a href="propertyform.html">Add Property</a></button>
+            </div>
         </div>
 
         <!-- Buyer Requests Section -->
@@ -60,51 +108,32 @@
     </div>
 
     <script>
-        document.addEventListener("DOMContentLoaded", handleLoadData)
+        let propertyCount = 2;
+        function addProperty() {
+            const propertyList = document.getElementById("property-list");
+            const propertyId = `property-${propertyCount}`;
+            
+            const newProperty = document.createElement("div");
+            newProperty.className = "col-md-6 col-lg-4";
+            newProperty.id = propertyId;
+            newProperty.innerHTML = `
+                <div class="property-card p-3">
+                    <img src="image/default.jpg" alt="New Property">
+                    <h3>New Property</h3>
+                    <p>Description of the property.</p>
+                    <p class="bhk">BHK: Not Specified</p>
+                    <p class="price">Price: Not Specified</p>
+                    <button class="btn btn-danger mt-2" onclick="removeProperty('${propertyId}')">Remove</button>
+                </div>
+            `;
+            propertyList.appendChild(newProperty);
+            propertyCount++;
+        }
 
-        async function handleLoadData(e) {
-
-
-            try {
-                const response = await fetch("http://192.168.232.202:5000/api/v1/properties/67dad8fb0d53f3c0bfd80e27", {
-                    method: "GET",
-                    headers: {
-                        "Content-Type": "application/json"
-                    }
-                });
-
-                if (response.ok) {
-                    const data = await response.json();
-                    console.log(data);
-
-                    let propertySection = document.getElementById("property-section");
-
-                    let htmlStructure = `
-                        <div class="row">
-                            <div class="col-md-4">
-                                <img src="image/Slider1.jpg" alt="Property Photo" class="img-fluid rounded">
-                            </div>
-                            <div class="col-md-8">
-                                <h4>Property Details</h4>
-                                <p>Location: New York, USA</p>
-                                <p>Price: $500,000</p>
-                                <p>Size: 2000 sqft</p>
-                                <button class="btn btn-primary">Edit</button>
-                                <button class="btn btn-success">Mark as Sold</button>
-                            </div>
-                        </div>
-                    `;
-                    propertySection.innerHTML = htmlStructure;
-
-
-
-                }
-
-
-
-
-            } catch (error) {
-                console.error("Error:", error);
+        function removeProperty(propertyId) {
+            const property = document.getElementById(propertyId);
+            if (property) {
+                property.remove();
             }
         }
     </script>

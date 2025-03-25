@@ -28,12 +28,6 @@
         .btn-primary:hover {
             background-color: #0056b3;
         }
-        @media (max-width: 768px) {
-            .container {
-                max-width: 100%;
-                padding: 15px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -72,12 +66,77 @@
                 <input type="text" class="form-control" id="propertyLocation" required>
             </div>
             <div class="mb-3">
-                <label for="propertyDescription" class="form-label">Description</label>
-                <textarea class="form-control" id="propertyDescription" rows="3" required></textarea>
+                <label for="ownerName" class="form-label">Owner Name</label>
+                <input type="text" class="form-control" id="ownerName" required>
             </div>
             <div class="mb-3">
-                <label for="propertyImage" class="form-label">Upload Image</label>
-                <input type="file" class="form-control" id="propertyImage" accept="image/*">
+                <label for="ownerContact" class="form-label">Owner Contact</label>
+                <input type="text" class="form-control" id="ownerContact" required>
+            </div>
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <select class="form-select" id="status" required>
+                    <option value="Ready to Move">Ready to Move</option>
+                    <option value="Under Construction">Under Construction</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="bedrooms" class="form-label">Bedrooms</label>
+                <input type="number" class="form-control" id="bedrooms" required>
+            </div>
+            <div class="mb-3">
+                <label for="bathrooms" class="form-label">Bathrooms</label>
+                <input type="number" class="form-control" id="bathrooms" required>
+            </div>
+            <div class="mb-3">
+                <label for="balcony" class="form-label">Balcony</label>
+                <input type="number" class="form-control" id="balcony" required>
+            </div>
+            <div class="mb-3">
+                <label for="furnished" class="form-label">Furnished</label>
+                <select class="form-select" id="furnished" required>
+                    <option value="Fully-Furnished">Fully-Furnished</option>
+                    <option value="Semi-Furnished">Semi-Furnished</option>
+                    <option value="Unfurnished">Unfurnished</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="loanAvailable" class="form-label">Loan Available</label>
+                <select class="form-select" id="loanAvailable" required>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Amenities</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Lifts" id="amenityLifts">
+                    <label class="form-check-label" for="amenityLifts">Lifts</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Security Guards" id="amenitySecurity">
+                    <label class="form-check-label" for="amenitySecurity">Security Guards</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Gardens" id="amenityGardens">
+                    <label class="form-check-label" for="amenityGardens">Gardens</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Power Backup" id="amenityBackup">
+                    <label class="form-check-label" for="amenityBackup">Power Backup</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="Parking Area" id="amenityParking">
+                    <label class="form-check-label" for="amenityParking">Parking Area</label>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label for="mainImage" class="form-label">Main Image</label>
+                <input type="file" class="form-control" id="mainImage" accept="image/*">
+            </div>
+            <div class="mb-3">
+                <label for="thumbnailImages" class="form-label">Thumbnail Images</label>
+                <input type="file" class="form-control" id="thumbnailImages" accept="image/*" multiple>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>

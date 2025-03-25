@@ -7,6 +7,7 @@
     <title>User Dashboard</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/comman.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -38,6 +39,7 @@
             border-bottom: 1px solid #34495e;
             transition: 0.3s;
         }
+        
 
         .sidebar a:hover {
             background: #34495e;
@@ -47,6 +49,9 @@
             margin-left: 260px;
             padding: 20px;
             width: calc(100% - 260px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             display: flex;
             flex-direction: column;
             align-items: center;
@@ -60,18 +65,25 @@
             margin-bottom: 20px;
             width: 80%;
             max-width: 600px;
+            width: 80%;
+            max-width: 600px;
         }
 
         .profile-card {
             background: linear-gradient(135deg, #3498db, #9b59b6);
+            background: linear-gradient(135deg, #3498db, #9b59b6);
             padding: 20px;
             border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
             text-align: center;
             color: white;
             width: 80%;
             max-width: 350px;
             min-height: 5rem;
+            color: white;
+            width: 80%;
+            max-width: 350px;
         }
 
         .profile-card img.user-img {
@@ -97,6 +109,26 @@
 
         .edit-profile-btn:hover {
             background-color: #ecf0f1;
+        }
+
+        .edit-profile-btn {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: white;
+            color: #3498db;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: 0.3s;
+            text-decoration: none; 
+            
+        }
+
+        .edit-profile-btn:hover {
+            background-color: #ecf0f1;
+            
         }
 
         .hidden {
@@ -139,6 +171,37 @@
                 max-width: 100%;
             }
         }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 200px;
+            }
+            .content {
+                margin-left: 210px;
+                width: calc(100% - 210px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            body {
+                flex-direction: column;
+            }
+            .sidebar {
+                width: 100%;
+                height: auto;
+                position: relative;
+                text-align: center;
+            }
+            .content {
+                margin-left: 0;
+                width: 100%;
+                padding: 10px;
+            }
+            .profile-card, .dashboard-card {
+                width: 100%;
+                max-width: 100%;
+            }
+        }
     </style>
     <script src="js/comman.js"></script>
 </head>
@@ -148,30 +211,47 @@
     <!-- Sidebar -->
     <div class="sidebar">
         <h2>Dashboard</h2>
-        <a href="#" onclick="showDashboard('seller')">📦 Seller Dashboard</a>
-        <a href="#" onclick="showDashboard('buyer')">🛒 Buyer Dashboard</a>
+        <a href="SellerUi.html" onclick="showDashboard('seller')">📦 Seller Dashboard</a>
+        <a href="BuyerUi.html" onclick="showDashboard('buyer')">🛒 Buyer Dashboard</a>
         <a href="index.html">🏠 Home</a>
         <a href="login.html">🔑 Login</a>
-        <a href="change-password.html">🔒 Change Password</a>
+        <a href="change-password.html" onclick="showChangePassword()">🔒 Change Password</a>
     </div>
 
     <!-- Main Content -->
     <div class="content">
         <!-- Seller Dashboard -->
-        <div id="seller-dashboard" class="dashboard-card hidden">
-            <h2>Seller Dashboard</h2>
-            <p>Manage your products, track orders, and view analytics.</p>
-        </div>
-
-        <!-- Buyer Dashboard -->
-        <div id="buyer-dashboard" class="dashboard-card hidden">
-            <h2>Buyer Dashboard</h2>
-            <p>Browse products, track purchases, and manage wishlist.</p>
+        <div class="content">
+            <div id="seller-dashboard" class="container hidden">
+                <h2>Seller Dashboard</h2>
+                <div class="row" id="seller-properties"></div>
+            </div>
+    
+            <div id="buyer-dashboard" class="container hidden">
+                <h2>Buyer Dashboard</h2>
+                <div class="row" id="buyer-properties"></div>
+            </div>
         </div>
 
         <!-- Profile Card -->
         <div class="profile-card loading-perent">
             <img src="image/loading.png" class="loading-image" style="display: inline-block;" alt="">
+        </div>
+
+        <!-- Change Password Form -->
+        <div id="change-password" class="dashboard-card hidden">
+            <h2>Change Password</h2>
+            <form>
+                <div class="mb-3">
+                    <label class="form-label">Old Password</label>
+                    <input type="password" class="form-control" placeholder="Enter old password">
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">New Password</label>
+                    <input type="password" class="form-control" placeholder="Enter new password">
+                </div>
+                <button type="submit" class="btn btn-primary">Change Password</button>
+            </form>
         </div>
     </div>
 
@@ -182,7 +262,8 @@
         function showDashboard(userType) {
             document.getElementById('seller-dashboard').classList.add('hidden');
             document.getElementById('buyer-dashboard').classList.add('hidden');
-
+            document.getElementById('change-password').classList.add('hidden');
+            
             if (userType === 'seller') {
                 document.getElementById('seller-dashboard').classList.remove('hidden');
             } else {
@@ -214,8 +295,58 @@
         function editProfile() {
             window.location.href = 'edit-profile.html';
         }
+
+        function showChangePassword() {
+            document.getElementById('change-password').classList.remove('hidden');
+        }
+
+        function editProfile() {
+            window.location.href = 'edit-profile.html';
+        }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- seller & buyer dashboard script-->
+    <script>
+        function showDashboard(userType) {
+            document.getElementById('seller-dashboard').classList.add('hidden');
+            document.getElementById('buyer-dashboard').classList.add('hidden');
+
+            if (userType === 'seller') {
+                document.getElementById('seller-dashboard').classList.remove('hidden');
+                loadProperties('seller');
+            } else {
+                document.getElementById('buyer-dashboard').classList.remove('hidden');
+                loadProperties('buyer');
+            }
+        }
+
+        function loadProperties(userType) {
+            const properties = [
+                { title: "Luxury Apartment", img: "image/aparmentlogo.jpeg", link: "Property.html?type=Apartment" },
+                { title: "Cozy House", img: "image/house.jpeg", link: "Property.html?type=House" },
+                { title: "Villa", img: "image/villa.jpeg", link: "Property.html?type=Villa" }
+            ];
+            
+            const container = document.getElementById(userType + '-properties');
+            container.innerHTML = '';
+            
+            properties.forEach(property => {
+                const card = document.createElement('div');
+                card.className = 'col-6 col-md-4 col-lg-3';
+                card.innerHTML = `
+                    <div class="property-card text-center p-3 border rounded shadow-sm">
+                        <a href="${property.link}">
+                            <img src="${property.img}" class="img-fluid rounded" alt="${property.title}">
+                        </a>
+                        <p class="mt-2">${property.title}</p>
+                    </div>
+                `;
+                container.appendChild(card);
+            });
+        }
+    </script>
 </body>
 
 </html>
