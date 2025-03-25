@@ -95,8 +95,6 @@ async function handleSignIn(e) {
     const data = await response.json();
     if (data.token) {
       document.querySelector("#real-signin-btn img.loading-image").style.display = "none";
-      console.log(data);
-      
       localStorage.setItem("token", data.token);
       alert("Login Successful!");
       window.location.href = "index.html";
