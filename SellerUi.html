@@ -30,9 +30,9 @@
             object-fit: cover;
         }
 
-        a{
+        a {
             color: white;
-            text-decoration: none; 
+            text-decoration: none;
         }
 
         .property-card h3 {
@@ -57,6 +57,7 @@
             color: #6c757d;
         }
     </style>
+    <script src="js/comman.js"></script>
 </head>
 
 <body>
@@ -66,22 +67,13 @@
         <!-- Property Section -->
         <div class="property-section mb-4">
             <div class="row" id="property-list">
-                <div class="col-md-6 col-lg-4" id="property-1">
-                    <div class="property-card p-3">
-                        <img src="image/apartment1.jpg" alt="Luxury Apartment">
-                        <h3>Luxury Apartment</h3>
-                        <p>Modern design with city view.</p>
-                        <p class="bhk">3 BHK</p>
-                        <p class="price">$250,000</p>
-                        <button class="btn btn-danger mt-2" onclick="removeProperty('property-1')">Remove</button>
-                    </div>
-                </div>
+                <h3>Loading....</h3>
             </div>
         </div>
-        
+
         <div class="row mt-3">
             <div class="col-12 text-center">
-                <button class="btn btn-primary" onclick="addProperty()"><a href="propertyform.html">Add Property</a></button>
+                <button class="btn btn-primary"><a href="propertyform.html">+ Add Property</a></button>
             </div>
         </div>
 
@@ -108,34 +100,75 @@
     </div>
 
     <script>
-        let propertyCount = 2;
-        function addProperty() {
-            const propertyList = document.getElementById("property-list");
-            const propertyId = `property-${propertyCount}`;
-            
-            const newProperty = document.createElement("div");
-            newProperty.className = "col-md-6 col-lg-4";
-            newProperty.id = propertyId;
-            newProperty.innerHTML = `
-                <div class="property-card p-3">
-                    <img src="image/default.jpg" alt="New Property">
-                    <h3>New Property</h3>
-                    <p>Description of the property.</p>
-                    <p class="bhk">BHK: Not Specified</p>
-                    <p class="price">Price: Not Specified</p>
-                    <button class="btn btn-danger mt-2" onclick="removeProperty('${propertyId}')">Remove</button>
-                </div>
-            `;
-            propertyList.appendChild(newProperty);
-            propertyCount++;
-        }
 
-        function removeProperty(propertyId) {
-            const property = document.getElementById(propertyId);
-            if (property) {
-                property.remove();
+
+        document.addEventListener("DOMContentLoaded", async function () {
+            const propertyList = document.getElementById("property-list");
+
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/v1/properties/user/properties`, {
+                    method: "GET",
+                    headers: {
+                        "Authorization": localStorage.getItem("token") // Token agar required ho
+                    }
+                });
+
+                const data = await response.json();
+
+                if (data.length > 0) {
+                    propertyList.innerHTML = "";
+
+                    data.forEach((property, index) => {
+                        const propertyId = `property-${index + 1}`;
+                        propertyList.innerHTML += `
+                    <div class="col-md-6 col-lg-4" id="${propertyId}">
+                        <div class="property-card p-3">
+                            <img src="${property.images[0] || 'image/apartment1.jpg'}" alt="${property.title}">
+                            <h3>${property.title}</h3>
+                            <p>${property.description}</p>
+                            <p class="bhk">${property.bhk || 'N/A'} BHK</p>
+                            <p class="price">$${property.price}</p>
+                            <button class="btn btn-danger mt-2" onclick="removeProperty('${propertyId}', '${property._id}')">Remove</button>
+                        </div>
+                    </div>
+                `;
+                    });
+                } else {
+                    propertyList.innerHTML = "<p>No properties found.</p>";
+                }
+            } catch (error) {
+                console.error("Error fetching properties:", error);
+                propertyList.innerHTML = "<p>Failed to load properties.</p>";
+            }
+        });
+
+        async function removeProperty(propertyId, propertyApiId) {
+            const isConfirmed = confirm("Are you sure you want to delete this property?");
+
+            if (!isConfirmed) return;
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/v1/properties/delete/${propertyApiId}`, {
+                    method: "DELETE",
+                    headers: {
+                        "Authorization": localStorage.getItem("token"),
+                        "Content-Type": "application/json"
+                    }
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    document.getElementById(propertyId).remove();
+                    alert("Property deleted successfully!");
+                } else {
+                    alert(result.message || "Failed to delete property.");
+                }
+            } catch (error) {
+                console.error("Error deleting property:", error);
+                alert("An error occurred while deleting the property.");
             }
         }
+
     </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
