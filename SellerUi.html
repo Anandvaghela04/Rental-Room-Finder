@@ -114,6 +114,8 @@
                             <p class="bhk">${property.bhk || 'N/A'} BHK</p>
                             <p class="price">$${property.price}</p>
                             <button class="btn btn-danger mt-2" onclick="removeProperty('${propertyId}', '${property._id}')">Remove</button>
+                        ${property.status !== "Sold" ? '<button class="btn btn-success mt-2" onclick="markAsSold("${property._id}")">Mark as Sold</button>' :
+                                '<button class="btn btn-secondary mt-2" disabled>Sold</button>'}
                         </div>
                     </div>
                 `;
@@ -258,6 +260,26 @@
                 alert("An error occurred while deleting the property.");
             }
         }
+
+        async function markAsSold(propertyId) {
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/v1/properties/sold/${propertyId}`, {
+                    method: "PUT",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": localStorage.getItem("token")
+                    },
+                });
+
+                if (!response.ok) throw new Error("Failed to mark property as sold");
+
+                alert("Property marked as sold successfully");
+            } catch (error) {
+                console.error("Error marking property as sold:", error);
+                alert("Failed to mark property as sold");
+            }
+        }
+
 
     </script>
 
