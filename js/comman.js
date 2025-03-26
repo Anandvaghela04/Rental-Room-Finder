@@ -33,3 +33,30 @@ function checkUserLoggedIn() {
     return true;
 }
 
+async function fetchGalleryData(galleryContainer) {
+    try {
+        const response = await fetch(`${BACKEND_URL}/api/v1/properties/gallery`);
+        const properties = await response.json();
+
+        // Generate and insert dynamic property cards
+        galleryContainer.innerHTML = properties.map(property => `
+            <div class="card-container">
+                <div class="card-content">
+                    <div class="card-front">
+                        <img src="${property.image}" alt="${property.title}">
+                    </div>
+                    <div class="card-back">
+                        <h3>${property.title}</h3>
+                        <p>${property.description}</p>
+                        <p class="unit">${property.bedrooms} BHK</p>
+                        <a href="view_more.html?id=${encodeURIComponent(property._id)}" class="button">View More</a>
+                    </div>
+                </div>
+            </div>
+        `).join(""); // Join array elements into a single string
+
+    } catch (error) {
+        console.error("Error fetching gallery data:", error);
+    }
+}
+
