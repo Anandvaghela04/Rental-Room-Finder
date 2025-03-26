@@ -39,7 +39,7 @@
             border-bottom: 1px solid #34495e;
             transition: 0.3s;
         }
-        
+
 
         .sidebar a:hover {
             background: #34495e;
@@ -122,13 +122,13 @@
             margin-top: 10px;
             font-weight: bold;
             transition: 0.3s;
-            text-decoration: none; 
-            
+            text-decoration: none;
+
         }
 
         .edit-profile-btn:hover {
             background-color: #ecf0f1;
-            
+
         }
 
         .hidden {
@@ -176,6 +176,7 @@
             .sidebar {
                 width: 200px;
             }
+
             .content {
                 margin-left: 210px;
                 width: calc(100% - 210px);
@@ -186,18 +187,22 @@
             body {
                 flex-direction: column;
             }
+
             .sidebar {
                 width: 100%;
                 height: auto;
                 position: relative;
                 text-align: center;
             }
+
             .content {
                 margin-left: 0;
                 width: 100%;
                 padding: 10px;
             }
-            .profile-card, .dashboard-card {
+
+            .profile-card,
+            .dashboard-card {
                 width: 100%;
                 max-width: 100%;
             }
@@ -226,7 +231,7 @@
                 <h2>Seller Dashboard</h2>
                 <div class="row" id="seller-properties"></div>
             </div>
-    
+
             <div id="buyer-dashboard" class="container hidden">
                 <h2>Buyer Dashboard</h2>
                 <div class="row" id="buyer-properties"></div>
@@ -263,7 +268,7 @@
             document.getElementById('seller-dashboard').classList.add('hidden');
             document.getElementById('buyer-dashboard').classList.add('hidden');
             document.getElementById('change-password').classList.add('hidden');
-            
+
             if (userType === 'seller') {
                 document.getElementById('seller-dashboard').classList.remove('hidden');
             } else {
@@ -287,21 +292,21 @@
                 <img src="image/profile.png" class="user-img" alt="User Icon">
                 <h2>${data.name}</h2>
                 <p>Email: ${data.email}</p>
-                <button class="edit-profile-btn" onclick="editProfile()">✏️ Edit Profile</button>
+                <button class="edit-profile-btn" onclick="editProfile('${data.name}','${data.email}')">✏️ Edit Profile</button>
             `;
             profileCard.classList.remove('loading-perent');
         }
 
-        function editProfile() {
-            window.location.href = 'edit-profile.html';
+
+        function editProfile(name, email) {
+            const encodedName = encodeURIComponent(name);
+            const encodedEmail = encodeURIComponent(email);
+            window.location.href = `edit-profile.html?name=${encodedName}&email=${encodedEmail}`;
         }
+
 
         function showChangePassword() {
             document.getElementById('change-password').classList.remove('hidden');
-        }
-
-        function editProfile() {
-            window.location.href = 'edit-profile.html';
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -328,10 +333,10 @@
                 { title: "Cozy House", img: "image/house.jpeg", link: "Property.html?type=House" },
                 { title: "Villa", img: "image/villa.jpeg", link: "Property.html?type=Villa" }
             ];
-            
+
             const container = document.getElementById(userType + '-properties');
             container.innerHTML = '';
-            
+
             properties.forEach(property => {
                 const card = document.createElement('div');
                 card.className = 'col-6 col-md-4 col-lg-3';

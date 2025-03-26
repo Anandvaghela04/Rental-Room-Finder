@@ -53,6 +53,7 @@
             background-color: #2980b9;
         }
     </style>
+    <script src="js/comman.js"></script>
 </head>
 
 <body>
@@ -72,10 +73,67 @@
                 <label class="form-label">Email</label>
                 <input type="email" class="form-control" id="email" value="johndoe@example.com">
             </div><br>
-            <button type="submit" class="btn btn-primary">Save Changes</button>
+            <button type="submit" class="btn btn-primary" id="udbtn">Save Changes</button>
             <a href="Profile.html" class="btn btn-secondary">Cancel</a>
         </form>
     </div>
+
+    <script>
+
+        // Function to get query parameters from URL
+        function getQueryParams() {
+            const params = new URLSearchParams(window.location.search);
+            const name = decodeURIComponent(params.get("name") || "");
+            const email = decodeURIComponent(params.get("email") || "");
+
+            // Populate input fields
+            document.getElementById("name").value = name;
+            document.getElementById("email").value = email;
+        }
+
+        // Call function when page loads
+        window.onload = getQueryParams;
+
+
+        document.getElementById("edit-profile-form").addEventListener("submit", async function (event) {
+            event.preventDefault(); // Form reload hone se roke
+
+            // User input values
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+
+            // API ke liye payload
+            const requestData = {
+                name: name,
+                email: email
+            };
+
+            try {
+                // API Call
+                const response = await fetch(`${BACKEND_URL}/api/v1/users/update`, {
+                    method: "PUT",  // Assuming update API uses PUT method
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": localStorage.getItem("token")
+                    },
+                    body: JSON.stringify(requestData)
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert("Profile updated successfully!");
+                    window.location.href = "Profile.html";  // Profile page par redirect
+                } else {
+                    alert("Error: " + result.message); // Error message show karega
+                }
+            } catch (error) {
+                console.error("Error updating profile:", error);
+                alert("Something went wrong! Please try again.");
+            }
+        });
+    </script>
+
 
 </body>
 
