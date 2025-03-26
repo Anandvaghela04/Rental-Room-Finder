@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,6 +10,7 @@
         body {
             background-color: #f8f9fa;
         }
+
         .container {
             max-width: 600px;
             background: white;
@@ -16,131 +18,180 @@
             border-radius: 10px;
             box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
         }
+
         h2 {
             text-align: center;
             color: #007bff;
         }
+
         .btn-primary {
             width: 100%;
             background-color: #007bff;
             border: none;
         }
+
         .btn-primary:hover {
             background-color: #0056b3;
         }
     </style>
+    <script src="js/comman.js"></script>
 </head>
+
 <body>
     <div class="container mt-5">
         <h2 class="mb-4">Create Property</h2>
-        <form>
+        <form id="propertyForm">
             <div class="mb-3">
-                <label for="propertyTitle" class="form-label">Property Title</label>
-                <input type="text" class="form-control" id="propertyTitle" required>
+                <label class="form-label">Property Title</label>
+                <input type="text" class="form-control" id="propertyTitle" placeholder="Enter property title" required>
             </div>
             <div class="mb-3">
-                <label for="propertyType" class="form-label">Property Type</label>
+                <label class="form-label">Description</label>
+                <textarea class="form-control" id="propertyDescription" placeholder="Enter property description"
+                    required></textarea>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Price ($)</label>
+                <input type="number" class="form-control" id="propertyPrice" placeholder="Enter price in INR" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Location</label>
+                <input type="text" class="form-control" id="propertyCity" placeholder="City" required>
+                <input type="text" class="form-control mt-2" id="propertyState" placeholder="State" required>
+                <input type="text" class="form-control mt-2" id="propertyCountry" placeholder="Country" required>
+                <input type="text" class="form-control mt-2" id="propertyPincode" placeholder="Pincode" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Area (sq. ft.)</label>
+                <input type="number" class="form-control" id="propertyArea" placeholder="Enter area in sq. ft."
+                    required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Bedrooms</label>
+                <input type="number" class="form-control" id="bedrooms" placeholder="Enter number of bedrooms" required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Bathrooms</label>
+                <input type="number" class="form-control" id="bathrooms" placeholder="Enter number of bathrooms"
+                    required>
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Property Type</label>
                 <select class="form-select" id="propertyType" required>
                     <option value="">Select Type</option>
-                    <option value="House">House</option>
                     <option value="Apartment">Apartment</option>
-                    <option value="Land">Land</option>
+                    <option value="Villa">Villa</option>
+                    <option value="House">House</option>
+                    <option value="Office">Office</option>
+                    <option value="Building">Building</option>
+                    <option value="Townhouse">Townhouse</option>
+                    <option value="Shop">Shop</option>
+                    <option value="Garage">Garage</option>
                 </select>
             </div>
             <div class="mb-3">
-                <label for="bhk" class="form-label">BHK</label>
-                <select class="form-select" id="bhk" required>
-                    <option value="">Select BHK</option>
-                    <option value="1 BHK">1 BHK</option>
-                    <option value="2 BHK">2 BHK</option>
-                    <option value="3 BHK">3 BHK</option>
-                    <option value="4 BHK">4 BHK</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="propertyPrice" class="form-label">Price ($)</label>
-                <input type="number" class="form-control" id="propertyPrice" required>
-            </div>
-            <div class="mb-3">
-                <label for="propertyLocation" class="form-label">Location</label>
-                <input type="text" class="form-control" id="propertyLocation" required>
-            </div>
-            <div class="mb-3">
-                <label for="ownerName" class="form-label">Owner Name</label>
-                <input type="text" class="form-control" id="ownerName" required>
-            </div>
-            <div class="mb-3">
-                <label for="ownerContact" class="form-label">Owner Contact</label>
-                <input type="text" class="form-control" id="ownerContact" required>
-            </div>
-            <div class="mb-3">
-                <label for="status" class="form-label">Status</label>
+                <label class="form-label">Status</label>
                 <select class="form-select" id="status" required>
-                    <option value="Ready to Move">Ready to Move</option>
+                    <option value="Available">Available</option>
+                    <option value="Sold">Sold</option>
                     <option value="Under Construction">Under Construction</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="bedrooms" class="form-label">Bedrooms</label>
-                <input type="number" class="form-control" id="bedrooms" required>
-            </div>
-            <div class="mb-3">
-                <label for="bathrooms" class="form-label">Bathrooms</label>
-                <input type="number" class="form-control" id="bathrooms" required>
-            </div>
-            <div class="mb-3">
-                <label for="balcony" class="form-label">Balcony</label>
-                <input type="number" class="form-control" id="balcony" required>
-            </div>
-            <div class="mb-3">
-                <label for="furnished" class="form-label">Furnished</label>
-                <select class="form-select" id="furnished" required>
-                    <option value="Fully-Furnished">Fully-Furnished</option>
-                    <option value="Semi-Furnished">Semi-Furnished</option>
-                    <option value="Unfurnished">Unfurnished</option>
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="loanAvailable" class="form-label">Loan Available</label>
-                <select class="form-select" id="loanAvailable" required>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
                 </select>
             </div>
             <div class="mb-3">
                 <label class="form-label">Amenities</label>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="Lifts" id="amenityLifts">
-                    <label class="form-check-label" for="amenityLifts">Lifts</label>
+                    <label class="form-check-label">Lifts</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="Security Guards" id="amenitySecurity">
-                    <label class="form-check-label" for="amenitySecurity">Security Guards</label>
+                    <label class="form-check-label">Security Guards</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="Gardens" id="amenityGardens">
-                    <label class="form-check-label" for="amenityGardens">Gardens</label>
+                    <label class="form-check-label">Gardens</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="Power Backup" id="amenityBackup">
-                    <label class="form-check-label" for="amenityBackup">Power Backup</label>
+                    <label class="form-check-label">Power Backup</label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="Parking Area" id="amenityParking">
-                    <label class="form-check-label" for="amenityParking">Parking Area</label>
+                    <label class="form-check-label">Parking Area</label>
                 </div>
             </div>
             <div class="mb-3">
-                <label for="mainImage" class="form-label">Main Image</label>
+                <label class="form-label">Main Image</label>
                 <input type="file" class="form-control" id="mainImage" accept="image/*">
             </div>
             <div class="mb-3">
-                <label for="thumbnailImages" class="form-label">Thumbnail Images</label>
+                <label class="form-label">Thumbnail Images</label>
                 <input type="file" class="form-control" id="thumbnailImages" accept="image/*" multiple>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-success">Submit</button>
         </form>
     </div>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        document.getElementById('propertyForm').addEventListener('submit', async function (event) {
+            event.preventDefault();
+
+            // JSON object create kiya
+            let data = {
+                title: document.getElementById("propertyTitle").value,
+                description: document.getElementById("propertyDescription").value,
+                price: document.getElementById("propertyPrice").value,
+                area: document.getElementById("propertyArea").value,
+                bedrooms: document.getElementById("bedrooms").value,
+                bathrooms: document.getElementById("bathrooms").value,
+                propertyType: document.getElementById("propertyType").value,
+                status: document.getElementById("status").value,
+                location: {
+                    city: document.getElementById("propertyCity").value,
+                    state: document.getElementById("propertyState").value,
+                    country: document.getElementById("propertyCountry").value,
+                    pincode: document.getElementById("propertyPincode").value
+                },
+                amenities: Array.from(document.querySelectorAll(".form-check-input:checked")).map(cb => cb.value),
+                images: [] // Yaha pe images store karenge
+            };
+
+            const mainImageInput = document.getElementById('mainImage');
+            if (mainImageInput && mainImageInput.files.length > 0) {
+                data.images.push(await convertToBase64(mainImageInput.files[0]));
+            }
+
+            const thumbnailInput = document.getElementById('thumbnailImages');
+            if (thumbnailInput && thumbnailInput.files.length > 0) {
+                for (let i = 0; i < thumbnailInput.files.length; i++) {
+                    data.images.push(await convertToBase64(thumbnailInput.files[i]));
+                }
+            }
+            // finally send data into server
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/v1/properties/create`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': localStorage.getItem('token')
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    alert('Property created successfully!');
+                    window.location.href = "SellerUi.html";
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to create property');
+            }
+        });
+
+    </script>
+
 </body>
+
 </html>

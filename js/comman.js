@@ -1,4 +1,5 @@
 // common.js
+// const BACKEND_URL = "http://127.0.0.1:5000";
 const BACKEND_URL = "https://rental-room-finder-server.onrender.com";
 
 // check in local storage for user login or not
@@ -60,3 +61,12 @@ async function fetchGalleryData(galleryContainer) {
     }
 }
 
+// Convert image to base64
+async function convertToBase64(file) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result); // Returns base64 string
+        reader.onerror = error => reject(error);
+    });
+}
