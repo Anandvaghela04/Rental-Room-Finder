@@ -69,7 +69,7 @@
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
-                        "Authorization": "token"
+                        "Authorization": localStorage.getItem("token")
                     },
                     body: JSON.stringify(data)
                 });
