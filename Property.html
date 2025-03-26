@@ -1,48 +1,52 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+        integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Property Listings</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-      .navbar-brand h1 {
-    font-size: 20px;
-}
+        .navbar-brand h1 {
+            font-size: 20px;
+        }
 
-.navbar-brand span {
-    font-size: 15px;
-}
+        .navbar-brand span {
+            font-size: 15px;
+        }
 
-.navbar-nav .nav-link {
-    transition: color 0.3s ease-in-out;
-}
+        .navbar-nav .nav-link {
+            transition: color 0.3s ease-in-out;
+        }
 
-.navbar {
-    background-color: #E0E5E5 !important;
-}
+        .navbar {
+            background-color: #E0E5E5 !important;
+        }
 
-.navbar-nav .nav-link:hover {
-    color: #7c61f4 !important;
-}
+        .navbar-nav .nav-link:hover {
+            color: #7c61f4 !important;
+        }
 
-    /* Profile Icon */
-    .profile img {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        object-fit: cover;
-        cursor: pointer;
-        background-color: white;
-        padding: 5px;
-        border: 1px solid #ccc;
-    }
+        /* Profile Icon */
+        .profile img {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            object-fit: cover;
+            cursor: pointer;
+            background-color: white;
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
 
         body {
             background-color: #f8f9fa;
         }
+
         .property-card {
             background: white;
             border-radius: 10px;
@@ -50,32 +54,39 @@
             overflow: hidden;
             transition: transform 0.3s;
         }
+
         .property-card:hover {
             transform: scale(1.05);
         }
+
         .property-card img {
             width: 100%;
             height: 150px;
             object-fit: cover;
         }
+
         .property-card h3 {
             padding: 10px;
             margin: 0;
             font-size: 1.2rem;
             color: #007bff;
         }
+
         .property-card p {
             padding: 10px;
             margin: 0;
         }
+
         .price {
             font-weight: bold;
             color: #28a745;
         }
+
         .bhk {
             font-weight: bold;
             color: #6c757d;
         }
+
         .btn-view {
             background-color: #007bff;
             color: white;
@@ -87,25 +98,31 @@
             text-decoration: none;
             margin-top: 10px;
         }
+
         .footer {
             background: #0a2a43;
             color: white;
             padding: 40px 0;
         }
+
         .footer a {
             color: white;
             text-decoration: none;
         }
+
         .footer a:hover {
             text-decoration: underline;
             color: #7c61f4 !important;
         }
+
         .footer .social-icons a {
             margin: 0 10px;
             font-size: 20px;
         }
     </style>
+    <script src="js/comman.js"></script>
 </head>
+
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
         <div class="container">
@@ -132,7 +149,7 @@
             </div>
         </div>
     </nav>
-    <div class="container text-center my-4">
+    <div class="container text-center my-4" id="property-container">
         <h1>Property Types</h1><br>
 
         <!-- <div class="property-section mb-4" data-type="Apartment">
@@ -257,8 +274,9 @@
                 </div>
             </div>
         </div> -->
-        
-        
+        <div class="row">
+            <p>Loading properties...</p>
+        </div>
     </div>
 
     <footer class="footer">
@@ -307,35 +325,69 @@
         </div>
     </footer>
 </body>
+
+
 <script>
-    // Function to get the URL parameter
+    // Function to get URL parameters
     function getParameterByName(name) {
         const urlParams = new URLSearchParams(window.location.search);
         return urlParams.get(name);
     }
 
-    // Get the selected property type from URL
+    // Get the selected property type from URL (If not found, fetch all properties)
     const selectedType = getParameterByName("type");
+    const propertyContainer = document.querySelector("div#property-container div.row");
 
-    if (selectedType) {
-        // Hide all property sections
-        document.querySelectorAll(".property-section").forEach(section => {
-            section.style.display = "none";
-        });
+    async function fetchProperties() {
+        try {
+            //  Construct API URL based on selectedType
+            const apiUrl = selectedType
+                ? `${BACKEND_URL}/api/v1/properties?propertyType=${selectedType}`
+                : `${BACKEND_URL}/api/v1/properties`; // Fetch all properties if no type is given
 
-        // Find the section with the matching data-type
-        const selectedSection = document.querySelector(`.property-section[data-type="${selectedType}"]`);
-        
-        if (selectedSection) {
-            selectedSection.style.display = "block";
-        } else {
-            // If no section matches, display a message
-            document.body.insertAdjacentHTML("beforeend", `<p>No properties found for: ${selectedType}</p>`);
+            const response = await fetch(apiUrl);
+            const data = await response.json();
+
+            // Clear previous content
+            propertyContainer.innerHTML = "";
+
+            if (data.length === 0) {
+                propertyContainer.innerHTML = `<p>No properties found.</p>`;
+                return;
+            }
+
+            // Loop through properties and display dynamically
+            data.forEach(property => {
+                const propertyElement = `
+                    <div class="col-md-6 col-lg-4">
+                        <div class="property-card p-3">
+                            <img src="${property.image}" alt="${property.title}">
+                            <h3>${property.title}</h3>
+                            <p>${property.description}</p>
+                            <p><strong>Area:</strong> ${property.area} sq. ft.</p>
+                            <p><strong>Bedrooms:</strong> ${property.bedrooms} | <strong>Bathrooms:</strong> ${property.bathrooms}</p>
+                            <p><strong>Price:</strong> ₹${property.price.toLocaleString()}</p>
+                            <p><strong>Location:</strong> ${property.location.city}, ${property.location.state}</p>
+                            <a href="view_more.html?id=${encodeURIComponent(property._id)}" class="btn-view">
+                               View More
+                            </a>
+                        </div>
+                    </div>
+                `;
+                propertyContainer.insertAdjacentHTML("beforeend", propertyElement);
+            });
+
+        } catch (error) {
+            console.error("Error fetching properties:", error);
+            propertyContainer.innerHTML = `<p>Error loading properties. Please try again.</p>`;
         }
     }
-    function redirectToViewMore(title, image, bhk, price, desc) {
-        const url = `view_more.html?title=${encodeURIComponent(title)}&image=${encodeURIComponent(image)}&bhk=${encodeURIComponent(bhk)}&price=${encodeURIComponent(price)}&desc=${encodeURIComponent(desc)}`;
-        window.location.href = url;
+
+    // ✅ Call function to fetch data
+    fetchProperties();
+
+    function redirectToViewMore(id) {
+        window.location.href = `view_more.html?id=${encodeURIComponent(id)}`;
     }
 </script>
 
