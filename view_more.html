@@ -76,16 +76,17 @@
 
 </body>
 <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    const propertyId = urlParams.get('id');
+    const decodedId = decodeURIComponent(propertyId);
     // Function to update main image
     function changeImage(imageSrc) {
         document.getElementById("mainImage").src = imageSrc;
     }
 
     // Function to fetch property details
-    async function fetchPropertyDetails() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const propertyId = urlParams.get('id');
-        const decodedId = decodeURIComponent(propertyId);
+    async function fetchPropertyDetails(decodedId) {
+
 
         if (!decodedId) {
             document.getElementById("property-title").innerText = "Invalid Property ID";
@@ -110,7 +111,7 @@
             <p><strong>Bathrooms:</strong> ${data.bathrooms}</p>
         `;
 
-            
+
             // Update Amenities
             let amenitiesHTML = "";
             data.amenities.forEach(amenity => {
@@ -141,12 +142,33 @@
     }
 
     // Function Call
-    fetchPropertyDetails();
+    fetchPropertyDetails(decodedId);
 
     // Book Now Function (Placeholder)
-    function bookNow() {
-        alert("Booking function not implemented yet!");
+    function bookNow(decodedId) {
+        fetch(`${BACKEND_URL}/api/v1/properties/request/${decodedId}`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": localStorage.getItem("token")
+            },
+        })
+            .then(response => response.json())
+            .then(data => {
+                // Success message dikhana
+                alert("Booking successful! Redirecting to Buyer UI...");
+
+                // 3 second ke baad page redirect karna
+                setTimeout(() => {
+                    window.location.href = "buyerUI.html";
+                }, 3000);
+            })
+            .catch(error => {
+                console.error("Error booking property:", error);
+                alert("Something went wrong. Please try again.");
+            });
     }
+
 
 </script>
 
