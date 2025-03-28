@@ -145,7 +145,7 @@
     fetchPropertyDetails(decodedId);
 
     // Book Now Function (Placeholder)
-    function bookNow(decodedId) {
+    function bookNow() {
         fetch(`${BACKEND_URL}/api/v1/properties/request/${decodedId}`, {
             method: "POST",
             headers: {
@@ -160,8 +160,8 @@
 
                 // 3 second ke baad page redirect karna
                 setTimeout(() => {
-                    window.location.href = "buyerUI.html";
-                }, 3000);
+                    window.location.href = "BuyerUi.html";
+                }, 2000);
             })
             .catch(error => {
                 console.error("Error booking property:", error);
