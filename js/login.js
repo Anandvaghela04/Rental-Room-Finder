@@ -39,9 +39,11 @@ async function handleSignUp(e) {
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;
   const password = document.getElementById("password").value;
+  const role = document.querySelector('input[name="role"]:checked').value;
 
 
-  if (!name || !email || !password) {
+
+  if (!name || !email || !password || role) {
     alert("All fields are required!");
     return;
   }
@@ -53,7 +55,7 @@ async function handleSignUp(e) {
       headers: {
         "Content-Type": "application/json"
       },
-      body: JSON.stringify({ name, email, password })
+      body: JSON.stringify({ name, email, password, role })
     });
 
     if (response.ok) {
