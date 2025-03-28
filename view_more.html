@@ -1,107 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Property Details</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css"> <!-- External CSS -->
 </head>
 <style>
     body {
-    font-family: Arial, sans-serif;
-}
+        font-family: Arial, sans-serif;
+    }
 
-.main-image {
-    width: 100%;
-    height: auto;
-    max-height: 500px;
-    border-radius: 10px;
-}
+    .main-image {
+        width: 100%;
+        height: auto;
+        max-height: 500px;
+        border-radius: 10px;
+    }
 
-.thumb {
-    width: 100%;
-    height: 100px; 
-    cursor: pointer;
-    border-radius: 5px;
-}
+    .thumb {
+        width: 100%;
+        height: 100px;
+        cursor: pointer;
+        border-radius: 5px;
+    }
 
-.thumb:hover {
-    border: 2px solid #007bff;
-}
+    .thumb:hover {
+        border: 2px solid #007bff;
+    }
 
-.property-details {
-    max-width: 700px;
-    margin: auto;
-    background-color: #f8f9fa;
-}
-
+    .property-details {
+        max-width: 700px;
+        margin: auto;
+        background-color: #f8f9fa;
+    }
 </style>
+<script src="js/comman.js"></script>
+
 <body>
 
-<div class="container mt-4">
-    <!-- Property Images Section -->
-    <div class="text-center">
-        <img id="mainImage" src="image/Slider1.jpg" class="img-fluid main-image" alt="Property Image">
-    </div>
-    
-    <!-- Thumbnails Row -->
-    <div class="row mt-3 justify-content-center">
-        <div class="col-3 col-md-2">
-            <img src="image/Slider1.jpg" class="img-thumbnail thumb" onclick="changeImage('image/Slider1.jpg')">
-        </div>
-        <div class="col-3 col-md-2">
-            <img src="image/Slider2.jpg" class="img-thumbnail thumb" onclick="changeImage('image/Slider2.jpg')">
-        </div>
-        <div class="col-3 col-md-2">
-            <img src="image/Slider3.jpg" class="img-thumbnail thumb" onclick="changeImage('image/Slider3.jpg')">
-        </div>
-    </div>
-
-    <!-- Property Details Section -->
-    <div class="property-details mt-4 p-3 border rounded bg-light">
-        <h3 class="text-center">Modern Flats and Apartments</h3>
-        <p><strong>Location:</strong> Andheri, Mumbai, India - 400104</p>
-        <p><strong>Price:</strong> 15 Lac</p>
-        <p><strong>Owner:</strong> John Doe (1234567890)</p>
-        <p><strong>Status:</strong> Ready to Move</p>
-        <p><strong>Bedrooms:</strong> 3</p>
-        <p><strong>Bathrooms:</strong> 2</p>
-        <p><strong>Balcony:</strong> 1</p>
-        <p><strong>Furnished:</strong> Semi-Furnished</p>
-        <p><strong>Loan Available:</strong> Yes</p>
-
-        <!-- Amenities -->
-        <h5>Amenities</h5>
-        <ul class="list-unstyled">
-            <li>✔ Lifts</li>
-            <li>✔ Security Guards</li>
-            <li>✔ Gardens</li>
-            <li>✔ Power Backup</li>
-            <li>✔ Parking Area</li>
-            <li>❌ Gym</li>
-        </ul>
-
-        <!-- Buttons -->
+    <div class="container mt-4">
+        <!-- Property Images Section -->
         <div class="text-center">
-            <button class="btn btn-primary me-2" onclick="bookNow()">Book Now</button>
-            
+            <img id="mainImage" src="" class="img-fluid main-image" alt="Property Image">
+        </div>
+
+        <!-- Thumbnails Row -->
+        <div class="row mt-3 justify-content-center" id="thumbnails">
+            <!-- Thumbnails will be updated dynamically -->
+        </div>
+
+        <!-- Property Details Section -->
+        <div class="property-details mt-4 p-3 border rounded bg-light">
+            <h3 class="text-center" id="property-title">Loading...</h3>
+            <div id="property-info">
+                <!-- Property details will be updated here -->
+            </div>
+
+            <!-- Amenities -->
+            <h5>Amenities</h5>
+            <ul class="list-unstyled" id="amenities">
+                <!-- Amenities will be updated here -->
+            </ul>
+
+            <!-- Buttons -->
+            <div class="text-center">
+                <button class="btn btn-primary me-2" onclick="bookNow()">Book Now</button>
+            </div>
         </div>
     </div>
-</div>
 
-<script src="script.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="script.js"></script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
 <script>
+    // Function to update main image
     function changeImage(imageSrc) {
-    document.getElementById("mainImage").src = imageSrc;
-}
+        document.getElementById("mainImage").src = imageSrc;
+    }
 
-function bookNow() {
-    alert("Booking Confirmed! Our team will contact you shortly.");
-}
+    // Function to fetch property details
+    async function fetchPropertyDetails() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const propertyId = urlParams.get('id');
+        const decodedId = decodeURIComponent(propertyId);
+
+        if (!decodedId) {
+            document.getElementById("property-title").innerText = "Invalid Property ID";
+            return;
+        }
+
+        try {
+            const response = await fetch(`${BACKEND_URL}/api/v1/properties/${decodedId}`);
+            if (!response.ok) throw new Error("Failed to fetch property details");
+            const data = await response.json();
+
+            // Update Property Title
+            document.getElementById("property-title").innerText = data.title;
+
+            // Update Property Info
+            document.getElementById("property-info").innerHTML = `
+            <p><strong>Location:</strong> ${data.location.city} - ${data.location.pincode}, ${data.location.state}, ${data.location.country}-</p>
+            <p><strong>Price:</strong> ${data.price}</p>
+            <p><strong>Owner:</strong> ${data.createdBy.name} (${data.createdBy.email})</p>
+            <p><strong>Status:</strong> ${data.status}</p>
+            <p><strong>Bedrooms:</strong> ${data.bedrooms}</p>
+            <p><strong>Bathrooms:</strong> ${data.bathrooms}</p>
+        `;
+
+            
+            // Update Amenities
+            let amenitiesHTML = "";
+            data.amenities.forEach(amenity => {
+                amenitiesHTML += `<li>✔ ${amenity}</li>`;
+            });
+            document.getElementById("amenities").innerHTML = amenitiesHTML;
+
+            // Update Images
+            const thumbnails = document.getElementById("thumbnails");
+            thumbnails.innerHTML = ""; // Clear old thumbnails
+
+            if (data.images && data.images.length > 0) {
+                changeImage(data.images[0]); // Set first image as main
+                data.images.forEach(img => {
+                    changeImage(img);
+                    thumbnails.innerHTML += `
+                    <div class="col-3 col-md-2">
+                        <img src="${img}" class="img-thumbnail thumb" onclick="changeImage('${img}')">
+                    </div>
+                `;
+                });
+            }
+
+        } catch (error) {
+            document.getElementById("property-title").innerText = "Error fetching details";
+            console.error("Error:", error);
+        }
+    }
+
+    // Function Call
+    fetchPropertyDetails();
+
+    // Book Now Function (Placeholder)
+    function bookNow() {
+        alert("Booking function not implemented yet!");
+    }
 
 </script>
+
 </html>
