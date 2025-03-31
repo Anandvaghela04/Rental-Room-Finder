@@ -146,10 +146,15 @@
                     <h5 class="card-title">${property.title}</h5>
                     <p class="mb-1"><strong>Price:</strong> $${property.price.toLocaleString()}</p>
                     <p class="mb-3"><strong>Size:</strong> ${property.size} sqft</p>
-                    ${statusContent}
-                    <a href="view_more.html?id=${encodeURIComponent(property.id)}" class="text-light btn btn-primary w-100 mt-auto">
-                               View More
-                            </a>
+                    ${statusContent}    
+                   <div class="d-flex gap-2">
+                        <a href="view_more.html?id=${encodeURIComponent(property.id)}" class="btn btn-primary flex-grow-1">
+                            View More
+                        </a>
+                       ${property.status === 'approved' ? ` <a href="confirm_booking.html?id=${encodeURIComponent(property.id)}" class="btn btn-success flex-grow-1">
+                            Confirm Booking
+                        </a>`: ""}
+                    </div>
                 </div>
             </div>
         `;
