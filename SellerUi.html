@@ -203,7 +203,7 @@
                                                         ${req.status === "pending" ? `
                                                         <button class="btn btn-sm btn-outline-danger me-2" onclick="handleReject('${req._id}')">Reject</button>
                                                         <button class="btn btn-sm btn-outline-success" onclick="handleApprove('${req._id}')">Approve</button>
-                                                        ` : req.status === "approve" ? `
+                                                        ` : req.status === "approved" ? `
                                                         <span class="text-success fw-bold">Approved</span>
                                                         ` : `
                                                         <span class="text-danger fw-bold">Rejected</span>
