@@ -150,8 +150,35 @@
         </div>
     </nav>
     <div class="container text-center my-4" id="property-container">
-        <h1>Property Types</h1><br>
-        <div class="row">
+        <!-- <h1>Property</h1><br> -->
+        <!-- Search Box -->
+        <div class="row mb-3">
+            <div class="col-md-6 mx-auto">
+                <input type="text" class="form-control" placeholder="Search properties...">
+            </div>
+        </div>
+        <!-- Property Types -->
+        <div class="row text-center">
+            <div class="col-2">
+                <button class="btn btn-outline-primary w-100" onclick="setPropertyType('home')">Home</button>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-outline-primary w-100" onclick="setPropertyType('home')">Apartment</button>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-outline-primary w-100" onclick="setPropertyType('home')">Villa</button>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-outline-primary w-100" onclick="setPropertyType('home')">Shop</button>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-outline-primary w-100" onclick="setPropertyType('home')">Office</button>
+            </div>
+            <div class="col-2">
+                <button class="btn btn-outline-primary w-100" onclick="setPropertyType('home')">Plot</button>
+            </div>
+        </div>
+        <div class="row property-section">
             <p>Loading properties...</p>
         </div>
     </div>
@@ -211,9 +238,14 @@
         return urlParams.get(name);
     }
 
+    function setPropertyType(type) {
+        // Update URL with selected property type
+        window.location.href = `Property.html?type=${type}`;
+    }
+
     // Get the selected property type from URL (If not found, fetch all properties)
     const selectedType = getParameterByName("type");
-    const propertyContainer = document.querySelector("div#property-container div.row");
+    const propertyContainer = document.querySelector("div#property-container div.row.property-section");
 
     async function fetchProperties() {
         try {
