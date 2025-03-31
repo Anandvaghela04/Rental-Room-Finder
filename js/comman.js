@@ -38,7 +38,6 @@ async function fetchGalleryData(galleryContainer) {
     try {
         const response = await fetch(`${BACKEND_URL}/api/v1/properties/gallery`);
         const properties = await response.json();
-        console.log(properties);
 
 
         // Generate and insert dynamic property cards
@@ -71,4 +70,11 @@ async function convertToBase64(file) {
         reader.onload = () => resolve(reader.result); // Returns base64 string
         reader.onerror = error => reject(error);
     });
+}
+
+function loadComponent(id, file) {
+    fetch(file)
+        .then(response => response.text())
+        .then(data => document.getElementById(id).innerHTML = data)
+        .catch(error => console.error('Error loading component:', error));
 }
