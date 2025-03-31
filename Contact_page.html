@@ -10,26 +10,6 @@
     <title>Contact Us - Rental Room Finder</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .navbar-brand h1 {
-            font-size: 20px;
-        }
-
-        .navbar-brand span {
-            font-size: 15px;
-        }
-
-        .navbar-nav .nav-link {
-            transition: color 0.3s ease-in-out;
-        }
-
-        .navbar {
-            background-color: #E0E5E5 !important;
-        }
-
-        .navbar-nav .nav-link:hover {
-            color: #7c61f4 !important;
-        }
-
         /* Profile Icon */
         .profile img {
             width: 40px;
@@ -75,61 +55,13 @@
             text-align: center;
             margin-top: 20px;
         }
-
-        .footer {
-            background: #0a2a43;
-            color: white;
-            padding: 40px 0;
-        }
-
-        .footer a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-            color: #7c61f4 !important;
-        }
-
-        .footer .social-icons a {
-            margin: 0 10px;
-            font-size: 20px;
-        }
     </style>
     <script src="js/comman.js"></script>
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
-        <div class="container">
-            <a class="navbar-brand" href="#">
-                <img src="image/logo.jpg" alt="Rooms for Rent" height="60">
-            </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="AboutUs.html">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Property.html">Property</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Virtual_Tour.html">Virtual Tour</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Our_Gallery.html">Gallery</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Blog.html">Blog</a></li>
-                    <li class="nav-item"><a class="nav-link" href="Contact_page.html">Contact</a></li>
-                    <li>
-                        <div class="ms-4">
-                            <a href="Profile.html">
-                                <i class="fa-solid fa-user fs-3 text-dark"></i>
-                            </a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            
-        </div>
-    </nav>
+    <!-- ================== NAVIGATION BAR ================== -->
+    <div id="navbar"></div>
 
     <div class="container d-flex justify-content-center">
         <div class="contact-container">
@@ -165,51 +97,8 @@
         </div>
     </div><br>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-3">
-                    <h5>Get In Touch</h5>
-                    <p>Ahmedabad, Gujarat</p>
-                    <p>+00 00000 00000</p>
-                    <p>info@example.com</p>
-                    <div class="social-icons">
-                        <a href="#"><i class="fab fa-facebook"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <h5>Quick Links</h5>
-                    <p><a href="AboutUs.html">About Us</a></p>
-                    <p><a href="Contact_page.html">Contact Us</a></p>
-                    <p><a href="#">Privacy Policy</a></p>
-                    <p><a href="#">Terms & Conditions</a></p>
-                </div>
-                <div class="col-md-3">
-                    <h5>Photo Gallery</h5>
-                    <div class="d-flex flex-wrap">
-                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
-                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
-                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
-                        <img src="image/a_1.jpeg" class="img-fluid m-1" width="60" height="60" alt="Gallery">
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <h5>Newsletter</h5>
-                    <p>Subscribe to our newsletter for updates.</p>
-                    <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Your email">
-                        <button class="btn btn-primary">Sign Up</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="text-center mt-4">
-            <p>&copy; 2025 Rooms for Rent. All rights reserved.</p>
-        </div>
-    </footer>
+    <!-- ================== FOOTER ================== -->
+    <div id="footer"></div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -249,6 +138,8 @@
             }
         });
 
+        loadComponent('navbar', 'navigation.html');  // Navigation Load Karna
+        loadComponent('footer', 'footer.html');      // Footer Load Karna
 
     </script>
 </body>
