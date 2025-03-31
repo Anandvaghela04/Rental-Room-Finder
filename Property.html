@@ -196,7 +196,7 @@
         <!-- Search Box -->
         <div class="row mb-3">
             <div class="col-md-6 mx-auto">
-                <input type="text" class="form-control" placeholder="Search properties...">
+                <input type="text" id="search-box" class="form-control" placeholder="Search properties...">
             </div>
         </div>
         <!-- Property Types -->
@@ -285,12 +285,15 @@
     const selectedType = getParameterByName("type");
     const propertyContainer = document.querySelector("div#property-container div.row.property-section");
 
-    async function fetchProperties() {
+    async function fetchProperties(query) {
         try {
             //  Construct API URL based on selectedType
             const apiUrl = selectedType
                 ? `${BACKEND_URL}/api/v1/properties?propertyType=${selectedType}`
-                : `${BACKEND_URL}/api/v1/properties`; // Fetch all properties if no type is given
+                : (query) ? `${BACKEND_URL}/api/v1/properties/search/properties?query=${query}` :
+                    `${BACKEND_URL}/api/v1/properties`;
+
+            console.log(apiUrl);
 
             const response = await fetch(apiUrl);
             const data = await response.json();
@@ -329,6 +332,21 @@
             propertyContainer.innerHTML = `<p>Error loading properties. Please try again.</p>`;
         }
     }
+
+    let debounceTimer;
+
+    document.getElementById("search-box").addEventListener("input", function() {
+        clearTimeout(debounceTimer);
+        const query = this.value.trim();
+        if (query.length === 0) {
+            document.getElementById("property-list").innerHTML = '<p class="no-results">Start typing to search properties...</p>';
+            return;
+        }
+
+        debounceTimer = setTimeout(() => {
+            fetchProperties(query);
+        }, 300); // Debounce API call
+    });
 
     // Call function to fetch data
     fetchProperties();
