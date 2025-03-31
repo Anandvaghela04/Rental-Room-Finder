@@ -120,6 +120,47 @@
             font-size: 20px;
         }
     </style>
+
+    <!-- property section  -->
+    <style>
+        .property-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .tab-item {
+            position: relative;
+            padding: 10px 15px;
+            cursor: pointer;
+            transition: color 0.3s ease-in-out;
+        }
+
+        .tab-item::after {
+            content: "";
+            position: absolute;
+            left: 50%;
+            bottom: 0;
+            width: 0;
+            height: 3px;
+            background-color: blue;
+            transition: all 0.3s ease-in-out;
+            transform: translateX(-50%);
+            opacity: 0;
+        }
+
+        .tab-item:hover::after {
+            width: 100%;
+            opacity: 1;
+        }
+
+        .tab-item:not(:hover)::after {
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+    </style>
     <script src="js/comman.js"></script>
 </head>
 
@@ -158,26 +199,18 @@
             </div>
         </div>
         <!-- Property Types -->
-        <div class="row text-center">
-            <div class="col-2">
-                <button class="btn btn-outline-primary w-100" onclick="setPropertyType('home')">Home</button>
-            </div>
-            <div class="col-2">
-                <button class="btn btn-outline-primary w-100" onclick="setPropertyType('home')">Apartment</button>
-            </div>
-            <div class="col-2">
-                <button class="btn btn-outline-primary w-100" onclick="setPropertyType('home')">Villa</button>
-            </div>
-            <div class="col-2">
-                <button class="btn btn-outline-primary w-100" onclick="setPropertyType('home')">Shop</button>
-            </div>
-            <div class="col-2">
-                <button class="btn btn-outline-primary w-100" onclick="setPropertyType('home')">Office</button>
-            </div>
-            <div class="col-2">
-                <button class="btn btn-outline-primary w-100" onclick="setPropertyType('home')">Plot</button>
-            </div>
+        <div class="property-tabs">
+            <div class="tab-item" onclick="setPropertyType(this, 'Apartment')">Apartment</div>
+            <div class="tab-item" onclick="setPropertyType(this, 'Villa')">Villa</div>
+            <div class="tab-item" onclick="setPropertyType(this, 'House')">House</div>
+            <div class="tab-item" onclick="setPropertyType(this, 'Office')">Office</div>
+            <div class="tab-item" onclick="setPropertyType(this, 'Building')">Building</div>
+            <div class="tab-item" onclick="setPropertyType(this, 'Townhouse')">Townhouse</div>
+            <div class="tab-item" onclick="setPropertyType(this, 'Shop')">Shop</div>
+            <div class="tab-item" onclick="setPropertyType(this, 'Garage')">Garage</div>
         </div>
+
+        <!-- Property List -->
         <div class="row property-section">
             <p>Loading properties...</p>
         </div>
@@ -238,7 +271,13 @@
         return urlParams.get(name);
     }
 
-    function setPropertyType(type) {
+    function setPropertyType(element, type) {
+        // Remove active class from all tabs
+        document.querySelectorAll('.tab-item').forEach(item => item.classList.remove('active'));
+
+        // Add active class to the selected tab
+        element.classList.add('active');
+
         // Update URL with selected property type
         window.location.href = `Property.html?type=${type}`;
     }
