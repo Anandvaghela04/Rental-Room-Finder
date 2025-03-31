@@ -106,9 +106,7 @@
                     headers: {
                         "Authorization": localStorage.getItem("token")
                     }
-                }); // Replace with your actual API URL
-                if (!response.ok) throw new Error("Failed to fetch properties");
-
+                }); 
                 const properties = await response.json();
                 displayProperties(properties);
             } catch (error) {
@@ -120,6 +118,9 @@
         function displayProperties(properties) {
             const propertyList = document.getElementById("property-list");
             propertyList.innerHTML = ""; // Clear previous content
+            if (properties.legnth !== 0) {
+                propertyList.innerHTML = `<p>No properties found.</p>`;
+            }
 
             properties.forEach(property => {
                 const propertyCard = document.createElement("div");
