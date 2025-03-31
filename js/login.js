@@ -43,7 +43,7 @@ async function handleSignUp(e) {
 
 
 
-  if (!name || !email || !password || role) {
+  if (!name || !email || !password || !role) {
     alert("All fields are required!");
     return;
   }
