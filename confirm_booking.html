@@ -113,7 +113,6 @@
 
 
                 const initPayment = async (data) => {
-                    // console.log("datadaat", data);
                     const options = {
                         key: data.key, // Use the key from the backend response
                         amount: data.amount,
@@ -125,7 +124,7 @@
                         handler: async (response) => {
                             try {
                                 const verifyResponse = await fetch(
-                                    "http://localhost:5500/api/v1/payment/verify",
+                                    `${BACKEND_URL}/api/v1/payment/verify`,
                                     {
                                         method: "POST",
                                         headers: { "Content-Type": "application/json" },
@@ -169,7 +168,7 @@
                 document.getElementById("booking-form").addEventListener("submit", async function (event) {
                     event.preventDefault();
                     try {
-                        const response = await fetch("http://localhost:5500/api/v1/payment/Property", {
+                        const response = await fetch(`${BACKEND_URL}/api/v1/payment/Property`, {
                             method: "POST",
                             headers: { "Content-Type": "application/json" },
                             body: JSON.stringify({ amount: property.price }),
