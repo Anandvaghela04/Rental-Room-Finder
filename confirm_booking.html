@@ -63,22 +63,12 @@
                         </div>
 
                         <div class="mt-4">
-                            <h5>Booking Details</h5>
+                            <!-- <h5>Booking Details</h5> -->
                             <form id="booking-form">
-                                <div class="mb-3">
-                                    <label for="name" class="form-label">Full Name</label>
-                                    <input type="text" class="form-control" id="name" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" required>
-                                </div>
-                                <div class="mb-3">
-                                    <label for="phone" class="form-label">Phone Number</label>
-                                    <input type="text" class="form-control" id="phone" required>
-                                </div>
+                              
                                 <div class="text-center mt-4">
-                                    <button type="submit" class="btn btn-success w-100">Payment </button>
+                                    <button type="submit" class="btn btn-success w-100">Payment
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -121,10 +111,83 @@
                 const amenitiesList = document.getElementById("property-amenities");
                 amenitiesList.innerHTML = property.amenities.map(item => `<li>${item}</li>`).join('');
 
-                document.getElementById("booking-form").addEventListener("submit", function (event) {
+
+                const initPayment = async (data) => {
+                    // console.log("datadaat", data);
+                    const options = {
+                        key: data.key, // Use the key from the backend response
+                        amount: data.amount,
+                        currency: data.currency,
+                        name: "Find Books",
+                        description: "Test Transaction",
+                        image: "https://example.com/your_logo",
+                        order_id: data.id,
+                        handler: async (response) => {
+                            try {
+                                const verifyResponse = await fetch(
+                                    "http://localhost:5500/api/v1/payment/verify",
+                                    {
+                                        method: "POST",
+                                        headers: { "Content-Type": "application/json" },
+                                        body: JSON.stringify({
+                                            razorpay_orderID: response.razorpay_order_id,
+                                            razorpay_paymentID: response.razorpay_payment_id,
+                                            razorpay_signature: response.razorpay_signature,
+                                            payment: property.price,
+                                            propertyId: propertyId,
+                                        }),
+                                        credentials: "include",
+                                    }
+                                );
+                                const json = await verifyResponse.json();
+                                alert("payment success")
+                                window.location.href = "BuyerUi.html";
+                            } catch (error) {
+                                console.error("Error verifying payment:", error);
+                            }
+                        },
+                        prefill: {
+                            name: "Customer Name",
+                            email: "customer@example.com",
+                            contact: "9999999999",
+                        },
+                        notes: {
+                            address: "Razorpay Corporate Office",
+                        },
+                        theme: {
+                            color: "#3399cc",
+                        },
+                    };
+
+                    const rzp1 = new window.Razorpay(options);
+                    rzp1.open();
+                };
+
+
+
+
+                document.getElementById("booking-form").addEventListener("submit", async function (event) {
                     event.preventDefault();
-                    alert("Booking Confirmed! Property ID: " + propertyId);
-                    window.location.href = "index.html";
+                    try {
+                        const response = await fetch("http://localhost:5500/api/v1/payment/Property", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ amount: property.price }),
+                            credentials: "include",
+                        });
+
+                        const data = await response.json();
+                        if (data.data) {
+                            initPayment(data.data); // Pass the response data to initPayment
+                        } else {
+                            console.error("Error creating order: No data received");
+                            window.location.href = "index.html";
+                        }
+                    } catch (error) {
+                        console.error("Error creating order:", error.message);
+                    }
+
+                    // window.location.href = "index.html";
                 });
 
             } catch (error) {
@@ -134,6 +197,8 @@
             }
         });
     </script>
+
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 
 </body>
 
