@@ -65,7 +65,7 @@
                         <div class="mt-4">
                             <!-- <h5>Booking Details</h5> -->
                             <form id="booking-form">
-                              
+
                                 <div class="text-center mt-4">
                                     <button type="submit" class="btn btn-success w-100">Payment
                                     </button>
@@ -112,12 +112,12 @@
                 amenitiesList.innerHTML = property.amenities.map(item => `<li>${item}</li>`).join('');
 
 
-                const initPayment = async (data) => {
+                const initPayment = async (data, user) => {
                     const options = {
                         key: data.key, // Use the key from the backend response
                         amount: data.amount,
                         currency: data.currency,
-                        name: "Find Books",
+                        name: "Rental Room Finder",
                         description: "Test Transaction",
                         image: "https://example.com/your_logo",
                         order_id: data.id,
@@ -127,7 +127,10 @@
                                     `${BACKEND_URL}/api/v1/payment/verify`,
                                     {
                                         method: "POST",
-                                        headers: { "Content-Type": "application/json" },
+                                        headers: {
+                                            "Content-Type": "application/json",
+                                            "Authorization": localStorage.getItem("token")
+                                        },
                                         body: JSON.stringify({
                                             razorpay_orderID: response.razorpay_order_id,
                                             razorpay_paymentID: response.razorpay_payment_id,
@@ -146,9 +149,8 @@
                             }
                         },
                         prefill: {
-                            name: "Customer Name",
-                            email: "customer@example.com",
-                            contact: "9999999999",
+                            name: user.name,
+                            email: user.email
                         },
                         notes: {
                             address: "Razorpay Corporate Office",
@@ -168,19 +170,25 @@
                 document.getElementById("booking-form").addEventListener("submit", async function (event) {
                     event.preventDefault();
                     try {
-                        const response = await fetch(`${BACKEND_URL}/api/v1/payment/Property`, {
+                        const response = await fetch(`${BACKEND_URL}/api/v1/payment/property`, {
                             method: "POST",
-                            headers: { "Content-Type": "application/json" },
+                            headers: {
+                                "Content-Type": "application/json",
+                                "Authorization": localStorage.getItem("token"),
+                            },
                             body: JSON.stringify({ amount: property.price }),
                             credentials: "include",
                         });
 
                         const data = await response.json();
                         if (data.data) {
-                            initPayment(data.data); // Pass the response data to initPayment
+                            initPayment(data.data, data.user); // Pass the response data to initPayment
                         } else {
                             console.error("Error creating order: No data received");
-                            window.location.href = "index.html";
+                            // afer 3 second redirect into index page
+                            setTimeout(() => {
+                                window.location.href = "index.html";
+                            }, 3000)
                         }
                     } catch (error) {
                         console.error("Error creating order:", error.message);
