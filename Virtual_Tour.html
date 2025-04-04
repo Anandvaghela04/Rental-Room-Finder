@@ -29,10 +29,14 @@
 
         .gallery img {
             width: 100%;
-            height: auto;
+            height: 200px;
+            /* Set a fixed height */
+            object-fit: cover;
+            /* Ensures the image covers the space without distortion */
             border-radius: 5px;
             transition: transform 0.3s;
         }
+
 
         .gallery img:hover {
             transform: scale(1.05);
@@ -51,7 +55,7 @@
         <div class="my-4 text-center">
             <h2>360° Room View</h2>
             <a-scene embedded>
-                <a-sky src="image/vr_room.jpg"></a-sky>
+                <a-sky id="vrImage" src="image/vr_room.jpg"></a-sky>
             </a-scene>
         </div>
 
@@ -59,9 +63,15 @@
         <div class="my-4">
             <h2 class="text-center">Room Gallery</h2>
             <div class="row gallery">
-                <div class="col-md-4"><img src="image/a_1.jpeg" alt="Room 1"></div>
-                <div class="col-md-4"><img src="image/a_2.jpeg" alt="Room 2"></div>
-                <div class="col-md-4"><img src="image/a_1.jpeg" alt="Room 3"></div>
+                <div class="col-md-4">
+                    <img src="image/vr_room.jpg" alt="Room 1" onclick="changeVRImage('image/vr_room.jpg')">
+                </div>
+                <div class="col-md-4">
+                    <img src="image/vr_room2.jpg" alt="Room 2" onclick="changeVRImage('image/vr_room2.jpg')">
+                </div>
+                <div class="col-md-4">
+                    <img src="image/vr_room3.jpg" alt="Room 3" onclick="changeVRImage('image/vr_room3.jpg')">
+                </div>
             </div>
         </div>
 
@@ -83,6 +93,13 @@
         loadComponent('navbar', 'navigation.html');  // Navigation Load Karna
         loadComponent('footer', 'footer.html');      // Footer Load Karna
     </script>
+
+    <script>
+        function changeVRImage(imageSrc) {
+            document.getElementById("vrImage").setAttribute("src", imageSrc);
+        }
+    </script>
+
 </body>
 
 </html>
