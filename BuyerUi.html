@@ -106,7 +106,7 @@
                     headers: {
                         "Authorization": localStorage.getItem("token")
                     }
-                }); 
+                });
                 const properties = await response.json();
                 displayProperties(properties);
             } catch (error) {
@@ -118,7 +118,7 @@
         function displayProperties(properties) {
             const propertyList = document.getElementById("property-list");
             propertyList.innerHTML = ""; // Clear previous content
-            if (properties.legnth !== 0) {
+            if (properties.legnth == 0) {
                 propertyList.innerHTML = `<p>No properties found.</p>`;
             }
 
