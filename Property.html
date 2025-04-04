@@ -183,6 +183,7 @@
     const propertyContainer = document.querySelector("div#property-container div.row.property-section");
 
     async function fetchProperties(query) {
+        propertyContainer.innerHTML = `<iframe src="loader.html" frameborder="0"></iframe>`;
         try {
             //  Construct API URL based on selectedType
             const apiUrl = selectedType
@@ -190,7 +191,6 @@
                 : (query) ? `${BACKEND_URL}/api/v1/properties/search/properties?query=${query}` :
                     `${BACKEND_URL}/api/v1/properties`;
 
-            console.log(apiUrl);
 
             const response = await fetch(apiUrl);
             const data = await response.json();
