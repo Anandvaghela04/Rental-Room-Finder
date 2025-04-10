@@ -1,7 +1,7 @@
 // common.js
 // const BACKEND_URL = "http://127.0.0.1:5000";
-// const BACKEND_URL = "https://rental-room-finder-server.onrender.com";
-const BACKEND_URL = "https://rental-room-finder-server-odzy.onrender.com";
+const BACKEND_URL = "https://rental-room-finder-server.onrender.com";
+// const BACKEND_URL = "https://rental-room-finder-server-odzy.onrender.com";
 
 // check in local storage for user login or not
 function checkUserLoggedIn() {
