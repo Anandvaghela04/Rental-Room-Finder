@@ -218,6 +218,7 @@
         <h2>Dashboard</h2>
         <a href="SellerUi.html" id="seller-dashboard" style="display: none;">📦 Seller Dashboard</a>
         <a href="BuyerUi.html" id="buyer-dashboard" style="display: none;">🛒 Buyer Dashboard</a>
+        <a href="AdminUi.html" id="admin-dashboard" style="display: none;">🛠️ Admin Dashboard</a>
         <a href="index.html">🏠 Home</a>
         <a href="login.html">🔑 Login</a>
         <a href="change-password.html" onclick="showChangePassword()">🔒 Change Password</a>
@@ -263,6 +264,7 @@
                 }
             })
             let data = await response.json();
+            console.log("anand",data)
             // update profile card with user details
             let profileCard = document.querySelector('.profile-card');
 
@@ -276,12 +278,20 @@
             // check user type and base of usertype show the seller or buyer dashboard
             let sellerLink = document.getElementById('seller-dashboard');
             let buyerLink = document.getElementById('buyer-dashboard');
-            if (data.role === 'seller') {
+            let adminLink = document.getElementById('admin-dashboard');
+
+            if (data.role === 'admin') {
+                adminLink.style.display = "block";
+                sellerLink.style.display = "none";
+                buyerLink.style.display = "none";
+            } else if (data.role === 'seller') {
                 sellerLink.style.display = "block";
                 buyerLink.style.display = "none";
-            } else {
-                sellerLink.style.display = "none";
+                adminLink.style.display = "none";
+            } else if (data.role === 'buyer') {
                 buyerLink.style.display = "block";
+                sellerLink.style.display = "none";
+                adminLink.style.display = "none";
             }
         }
 
@@ -304,9 +314,9 @@
         async function checkUserLoggedIn() {
             let token = localStorage.getItem("token");
             let loginLink = document.querySelector(".sidebar a[href='login.html']");
-            
+
             if (token) {
-                loginLink.innerHTML =  `<img src="image/user-logout.png" alt="Logout" style="width: 20px; height: 20px; vertical-align: middle;"> Logout`;
+                loginLink.innerHTML = `<img src="image/user-logout.png" alt="Logout" style="width: 20px; height: 20px; vertical-align: middle;"> Logout`;
                 loginLink.href = "#";
                 loginLink.onclick = function () {
                     localStorage.removeItem("token");
@@ -314,7 +324,7 @@
                 };
             }
         }
-    
+
         checkUserLoggedIn();
     </script>
 </body>
