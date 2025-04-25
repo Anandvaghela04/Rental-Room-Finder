@@ -145,6 +145,7 @@
                             <button class="btn btn-danger mt-2" onclick="removeProperty('${propertyId}', '${property._id}')">Remove</button>
                         ${property.status !== "Sold" ? '<button class="btn btn-success mt-2" onclick="markAsSold("${property._id}")">Mark as Sold</button>' :
                                 '<button class="btn btn-secondary mt-2" disabled>Sold</button>'}
+                                <button class="btn btn-warning mt-2" onclick="addToGallery('${property._id}')">Add to Gallery</button>
                         </div>
                     </div>
                 `;
@@ -325,6 +326,33 @@
             } catch (error) {
                 console.error("Error marking property as sold:", error);
                 alert("Failed to mark property as sold");
+            }
+        }
+
+        async function addToGallery(propertyId) {
+            const isConfirmed = confirm("Do you want to add this property to the gallery?");
+
+            if (!isConfirmed) return;
+
+            try {
+                const response = await fetch(`${BACKEND_URL}/api/v1/gallery/request/${propertyId}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": localStorage.getItem("token")
+                    }
+                });
+
+                const result = await response.json();
+
+                if (response.ok) {
+                    alert("Gallery request sent successfully!");
+                } else {
+                    alert(result.message || "Failed to add to gallery.");
+                }
+            } catch (error) {
+                console.error("Error adding to gallery:", error);
+                alert("An error occurred while sending the gallery request.");
             }
         }
 
