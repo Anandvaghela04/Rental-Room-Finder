@@ -335,7 +335,7 @@
             if (!isConfirmed) return;
 
             try {
-                const response = await fetch(`${BACKEND_URL}/api/v1/gallery/request/${propertyId}`, {
+                const response = await fetch(`${BACKEND_URL}/api/v1/properties/gallery/request/${propertyId}`, {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json",
