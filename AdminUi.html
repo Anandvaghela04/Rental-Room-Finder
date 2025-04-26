@@ -48,7 +48,8 @@
                     }
                 });
                 const data = await response.json();
-                renderRequests(data);
+
+                renderRequests(data.properties);
             } catch (err) {
                 console.error("Failed to fetch gallery requests:", err);
             }
