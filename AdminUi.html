@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,22 +10,28 @@
         body {
             background-color: #f4f4f4;
         }
+
         .container {
             margin-top: 40px;
         }
+
         .card {
             margin-bottom: 20px;
         }
+
         .btn-approve {
             background-color: #2ecc71;
             color: white;
         }
+
         .btn-reject {
             background-color: #e74c3c;
             color: white;
         }
     </style>
+    <script src="js/comman.js"></script>
 </head>
+
 <body>
     <div class="container">
         <h2 class="text-center mb-4">🛠️ Admin - Gallery Image Requests</h2>
@@ -32,11 +39,10 @@
     </div>
 
     <script>
-        const BACKEND_URL = 'http://localhost:5000'; // Replace with your backend URL
 
         async function fetchGalleryRequests() {
             try {
-                const response = await fetch(`${BACKEND_URL}/api/v1/gallery/requests`, {
+                const response = await fetch(`${BACKEND_URL}/api/v1/properties/gallery/requests`, {
                     headers: {
                         "Authorization": localStorage.getItem("token")
                     }
@@ -79,8 +85,8 @@
 
         async function handleApprove(id) {
             try {
-                await fetch(`${BACKEND_URL}/api/v1/gallery/approve/${id}`, {
-                    method: 'PUT',
+                await fetch(`${BACKEND_URL}/api/v1/properties/gallery/approve/${id}`, {
+                    method: 'PATCH',
                     headers: {
                         "Authorization": localStorage.getItem("token")
                     }
@@ -94,8 +100,8 @@
 
         async function handleReject(id) {
             try {
-                await fetch(`${BACKEND_URL}/api/v1/gallery/reject/${id}`, {
-                    method: 'DELETE',
+                await fetch(`${BACKEND_URL}/api/v1/properties/gallery/reject/${id}`, {
+                    method: 'PATCH',
                     headers: {
                         "Authorization": localStorage.getItem("token")
                     }
@@ -111,4 +117,5 @@
         fetchGalleryRequests();
     </script>
 </body>
+
 </html>
