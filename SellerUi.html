@@ -141,7 +141,7 @@
                             <h3>${property.title}</h3>
                             <p>${property.description}</p>
                             <p class="bhk">${property.bhk || 'N/A'} BHK</p>
-                            <p class="price">$${property.price}</p>
+                            <p class="price">₹${property.price}</p>
                             <button class="btn btn-danger mt-2" onclick="removeProperty('${propertyId}', '${property._id}')">Remove</button>
                         ${property.status !== "Sold" ? '<button class="btn btn-success mt-2" onclick="markAsSold("${property._id}")">Mark as Sold</button>' :
                                 '<button class="btn btn-secondary mt-2" disabled>Sold</button>'}
