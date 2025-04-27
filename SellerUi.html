@@ -336,7 +336,7 @@
 
             try {
                 const response = await fetch(`${BACKEND_URL}/api/v1/properties/gallery/request/${propertyId}`, {
-                    method: "POST",
+                    method: "PATCH",
                     headers: {
                         "Content-Type": "application/json",
                         "Authorization": localStorage.getItem("token")
