@@ -63,6 +63,8 @@
                 container.innerHTML = '<p class="text-center">No gallery requests available.</p>';
                 return;
             }
+            console.log(requests);
+
 
             requests.forEach(req => {
                 const card = document.createElement('div');
@@ -70,9 +72,9 @@
 
                 card.innerHTML = `
                     <div class="card-body">
-                        <h5 class="card-title">Property: ${req.propertyTitle}</h5>
-                        <p class="card-text">Seller Email: ${req.sellerEmail}</p>
-                        <img src="${req.imageUrl}" class="img-fluid mb-3" style="max-height: 200px;" alt="Gallery Image"/>
+                        <h5 class="card-title">Property: ${req.title}</h5>
+                        <p class="card-text">Seller Email: ${req.owner.email}</p>
+                        <img src="${req.images[0]}" class="img-fluid mb-3" style="max-height: 200px;" alt="Gallery Image"/>
                         <div>
                             <button class="btn btn-approve me-2" onclick="handleApprove('${req._id}')">✅ Approve</button>
                             <button class="btn btn-reject" onclick="handleReject('${req._id}')">❌ Reject</button>
@@ -85,9 +87,11 @@
         }
 
         async function handleApprove(id) {
+            console.log('approve are called!');
+            
             try {
                 await fetch(`${BACKEND_URL}/api/v1/properties/gallery/approve/${id}`, {
-                    method: 'PATCH',
+                    method: 'PUT',
                     headers: {
                         "Authorization": localStorage.getItem("token")
                     }
@@ -102,7 +106,7 @@
         async function handleReject(id) {
             try {
                 await fetch(`${BACKEND_URL}/api/v1/properties/gallery/reject/${id}`, {
-                    method: 'PATCH',
+                    method: 'PUT',
                     headers: {
                         "Authorization": localStorage.getItem("token")
                     }
